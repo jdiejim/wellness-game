@@ -33,7 +33,7 @@ export const signUp = (user) => ({ type: SIGN_UP, user });
 export const signUpUser = (body) => {
   return dispatch => {
     dispatch(userIsLoading(true));
-    fetch('api/v1/signup', {
+    fetch('api/v1/users', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }

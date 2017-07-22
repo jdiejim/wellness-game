@@ -6,27 +6,16 @@ const db = require('knex')(configuration);
 const hash = (password) => crypto.createHash('sha1').update(password).digest('base64');
 const userTemplate = ({ id, first_name, last_name, email, avatar }) => ({ id, first_name, last_name, email, avatar });
 
-exports.getUser = ({ email, password: raw }, res) => {
+const getUser = ({ email, password: raw }) => {
   const password = hash(raw);
 
-  db('users').where({ email, password }).select()
-    .then(data => {
-      const user = userTemplate(data[0]);
-
-      res.status(200).json({ user });
-    })
-    .catch(error => res.status(500).json({ error }));
+  return db('users').where({ email, password }).select();
 }
 
-exports.createUser = (body, res) => {
-  const { first_name, last_name, email, password, avatar } = body;
+const createUser = (body) => {
   body.password = hash(body.password);
 
-  db('users').insert(body, ['id', 'first_name', 'last_name', 'email', 'avatar'])
-    .then(data => {
-      const user = userTemplate(data[0]);
-
-      res.status(200).json({ user });
-    })
-    .catch(error => res.status(500).json({ error }));
+  return db('users').insert(body, ['id', 'first_name', 'last_name', 'email', 'avatar']);
 }
+
+module.exports = { userTemplate, createUser, getUser };
