@@ -10,4 +10,14 @@ const create = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 }
 
-module.exports = { create };
+const index = (req, res, next) => {
+  User.getUsers()
+    .then(data => {
+      const users = data.map(user => User.userTemplate(user));
+
+      res.status(200).json({ users });
+    })
+    .catch(error => res.status(500).json({ error }));
+}
+
+module.exports = { create, index };

@@ -1,4 +1,14 @@
-import { LOG_IN, SIGN_UP, USER_IS_LOADING, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from '../utils/constants';
+import {
+  LOG_IN,
+  SIGN_UP,
+  USER_IS_LOADING,
+  USER_LOGIN_FAIL,
+  USER_LOGIN_SUCCESS,
+  GET_USERS,
+  USERS_ARE_LOADING,
+  USERS_FETCH_FAIL,
+  USERS_FETCH_SUCCESS
+} from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
 export const userIsLoading = (bool) => ({ type: USER_IS_LOADING, userIsLoading: bool });
@@ -50,5 +60,29 @@ export const signUpUser = (body) => {
       dispatch(userLogInFail(true));
       dispatch(userLogInSuccess(false));
     });
+  }
+}
+
+export const getUsers = (users) => ({ type: GET_USERS, users });
+export const usersAreLoading = (bool) => ({ type: USERS_ARE_LOADING, usersAreLoading: bool });
+export const usersFetchFail = (bool) => ({ type: USERS_FETCH_FAIL, usersFail: bool });
+export const usersFetchSuccess = (bool) => ({ type: USERS_FETCH_SUCCESS, usersSuccess: bool });
+
+export const fetchUsers = () => {
+  return (dispatch) => {
+    dispatch(usersAreLoading(true));
+    fetch('api/v1/users')
+      .then(res => {
+        dispatch(usersAreLoading(false));
+        return res.json();
+      })
+      .then(({ users }) => {
+        dispatch(usersFetchSuccess(true));
+        dispatch(getUsers(users));
+      })
+      .catch(err => {
+        dispatch(usersFetchFail(true));
+        dispatch(usersFetchSuccess(false));
+      })
   }
 }
