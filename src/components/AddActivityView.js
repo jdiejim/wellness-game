@@ -26,7 +26,7 @@ class AddActivityView extends Component {
     e.preventDefault();
 
     const { rest, sweat, nutrition, personal } = this.state;
-    const { id: user_id } = this.props.user;
+    const { createActivities, user: { id: user_id } } = this.props;
     const keys = Object.keys(this.state);
 
     const activities = keys.map(activity => ({
@@ -35,7 +35,7 @@ class AddActivityView extends Component {
       type: activity,
     }));
 
-    console.log(activities);
+    createActivities(activities);
 
     this.clearState();
   }
