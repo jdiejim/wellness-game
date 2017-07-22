@@ -7,7 +7,11 @@ import {
   GET_USERS,
   USERS_ARE_LOADING,
   USERS_FETCH_FAIL,
-  USERS_FETCH_SUCCESS
+  USERS_FETCH_SUCCESS,
+  ADD_ACTIVITIES,
+  ACTIVITIES_ARE_LOADING,
+  ADD_ACTIVITIES_FAIL,
+  ADD_ACTIVITIES_SUCCESS
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
@@ -84,5 +88,33 @@ export const fetchUsers = () => {
         dispatch(usersFetchFail(true));
         dispatch(usersFetchSuccess(false));
       })
+  }
+}
+
+export const addActivities = (activities) => ({ type: ADD_ACTIVITIES, activities });
+export const activitiesAreLoading = (bool) => ({ type: ACTIVITIES_ARE_LOADING, activitiesAreLoading: bool });
+export const addActivitiesFail = (bool) => ({ type: ADD_ACTIVITIES_FAIL, addActivitiesFail: bool });
+export const addActivitiesSuccess = (bool) => ({ type: ADD_ACTIVITIES_SUCCESS, addActivitiesSuccess: bool });
+
+export const createActivities = (body) => {
+  return dispatch => {
+    dispatch(activitiesAreLoading(true));
+    fetch('api/v1/activities', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      dispatch(activitiesAreLoading(false));
+      return res.json();
+    })
+    .then(({ activities }) => {
+      dispatch(addActivitiesSuccess(true));
+      dispatch(addActivities(activities));
+    })
+    .catch(err => {
+      dispatch(addActivitiesFail(true));
+      dispatch(addActivitiesSuccess(false));
+    });
   }
 }
