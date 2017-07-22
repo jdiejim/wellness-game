@@ -12,10 +12,15 @@ const getUser = ({ email, password: raw }) => {
   return db('users').where({ email, password }).select();
 }
 
+const getUsers = () => {
+
+  return db('users').select();
+}
+
 const createUser = (body) => {
   body.password = hash(body.password);
 
   return db('users').insert(body, ['id', 'first_name', 'last_name', 'email', 'avatar']);
 }
 
-module.exports = { userTemplate, createUser, getUser };
+module.exports = { userTemplate, createUser, getUser, getUsers };
