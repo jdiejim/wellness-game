@@ -3,7 +3,7 @@ import './styles/App.css';
 
 import WelcomePageContainer from '../containers/WelcomePageContainer';
 import SideBar from './SideBar';
-import Dashboard from './Dashboard';
+import DashboardContainer from '../containers/DashboardContainer';
 import { Route } from 'react-router-dom';
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
 
     return (
       <main className="App">
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={DashboardContainer} />
         <Route path="/login" component={WelcomePageContainer} />
         <Route path="/signup" component={WelcomePageContainer} />
       </main>
