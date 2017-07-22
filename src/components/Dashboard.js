@@ -1,36 +1,24 @@
 import React, { Component } from 'react';
-import SideBar from './SideBar';
-import { Banner } from '../elements';
+import { Route } from 'react-router-dom';
+import AddActivityView from './AddActivityView';
 import './styles/Dashboard.css';
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      users: []
-    }
-  }
 
   componentDidMount() {
-    const { fetchUsers } = this.props;
-    const { users } = this.state;
+    const { fetchUsers, users } = this.props;
 
     if (!users.length) {
       fetchUsers();
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.users.length !== nextProps.users.length) {
-      this.setState({ users: nextProps.useres });
-    }
-  }
-
   render() {
     return (
       <section className='dashboard'>
-        <section className='banner-dashboard'></section>
-        <SideBar />
+        {/* <section className='banner-dashboard'></section> */}
+        dashboard
+        {/* <AddActivityView /> */}
       </section>
     )
   }

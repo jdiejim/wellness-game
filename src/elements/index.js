@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { lighten } from 'polished';
 
 export const palette = {
@@ -32,10 +33,9 @@ export const Avatar = styled.div`
   border-radius: 50%;
 `;
 
-export const IconTab = styled.div`
+export const IconTab = styled(NavLink)`
   width: 100%;
   height: 90px;
-  background-color: ${({ selected }) => selected ? palette.primLight : 'transparent'};
   background-image: url(${({ icon })=> icon });
   background-position: center;
   background-repeat: no-repeat;
