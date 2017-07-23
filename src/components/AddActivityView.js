@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Calendar from './Calendar';
 import restIcon from '../assets/rest.svg';
 import nutritionIcon from '../assets/nutrition.svg';
 import sweatIcon from '../assets/sweat.svg';
@@ -65,9 +66,9 @@ class AddActivityView extends Component {
     return (
       <section className="add-activity-view">
         <section className="add-activity-wrapper">
-          <section className="calendar-wrapper">
-            <section className="calendar">
-              calendar
+          <section className="left-wrapper">
+            <section className="calendar-wrapper">
+              <Calendar />
             </section>
           </section>
           <form className="add-activity-form" onSubmit={this.handleOnSubmit}>
@@ -121,7 +122,7 @@ class AddActivityView extends Component {
               />
               <AddSubmit
                 type="submit"
-                value="Next"
+                value="Submit"
               />
             </section>
           </form>

@@ -198,3 +198,29 @@ export const AddSubmit = styled.input.attrs({
     color: #FFF;
   }
 `;
+
+export const NextButton = styled.button`
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  background-image: url(${({ icon }) => icon });
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  opacity: 0.7;
+  &:hover {
+    opacity: 0.3;
+  }
+`;
+
+export const Day = styled.article`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14.2%;
+  height: 40px;
+  background-color: ${({ active }) => active ? '#F65631' : 'transparent' };
+  border: none;
+  border-radius: 50%;
+`
