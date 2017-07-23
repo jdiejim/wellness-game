@@ -117,7 +117,7 @@ class AddActivityView extends Component {
               <AddSubmit
                 onClick={this.handleSelectAll}
                 type="button"
-                value="Quick"
+                value="Quick Week"
               />
               <AddSubmit
                 type="submit"

@@ -17,7 +17,7 @@ class WelcomePage extends Component {
     window.addEventListener('animationend', this.handleLogInSuccess);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     window.removeEventListener('animationend', this.handleLogInSuccess);
   }
 
