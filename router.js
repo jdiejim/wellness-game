@@ -8,6 +8,7 @@ router.post('/login', sessionsController.createSession);
 router.post('/users', usersController.create);
 router.get('/users', usersController.index);
 router.post('/activities', activitiesController.create);
+router.get('/activities/today', activitiesController.index);
 
 module.exports = router;
  
