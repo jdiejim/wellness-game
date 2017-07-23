@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import next from '../assets/next.svg';
 import back from '../assets/back.svg';
+import cancel from '../assets/cancel.svg';
 import { getKey } from '../utils/constants';
 import { NextButton, Day } from '../elements';
 import './styles/Calendar.css';
@@ -70,6 +71,15 @@ class Calendar extends Component {
           />
         )
       }
+      // if (+date.day < +currentDay) {
+      //   return (
+      //     <Day
+      //       key={getKey()}
+      //       value={date.day}
+      //       cancel={cancel}
+      //     />
+      //   )
+      // }
       if (date.day === currentDay && date.month === month) {
         return (
           <Day
@@ -104,6 +114,7 @@ class Calendar extends Component {
   handleMonthChange(e) {
     const { id } = e.target;
     const { selectDate, selectedDate, changeMonth } = this.props;
+    const day = moment(selectedDate).format('DD');
     let month;
     let year;
 
@@ -117,7 +128,7 @@ class Calendar extends Component {
         year = moment(selectedDate).subtract(1, 'month').format('YYYY');
         break;
     }
-    const date = `${year}-${month}-01T09:20:56-06:00`;
+    const date = `${year}-${month}-${day}T09:20:56-06:00`;
 
     selectDate(date);
     changeMonth(this.getDaysList(date));

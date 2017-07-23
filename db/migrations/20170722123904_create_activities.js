@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
       table.enu('type', ['rest', 'sweat', 'nutrition', 'personal', 'wildcard']);
       table.boolean('status').defaultTo(false);
       table.integer('points').defaultTo(5);
+      table.date('date');
       table.timestamps(true, true);
     })
   ])

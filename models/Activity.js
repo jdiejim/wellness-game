@@ -10,7 +10,7 @@ const getToday = () => {
 }
 
 const createActivity = (activities) => {
-  const promises = activities.map(activity => db('activities').insert(activity, ['user_id', 'description', 'type', 'points', 'status', 'created_at']));
+  const promises = activities.map(activity => db('activities').insert(activity, ['user_id', 'description', 'type', 'points', 'status', 'date']));
 
   return Promise.all(promises);
 }

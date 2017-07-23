@@ -32,12 +32,13 @@ class AddActivityView extends Component {
 
   handleOnSubmit(e) {
     e.preventDefault();
-    const { createActivities, user: { id: user_id } } = this.props;
+    const { selectedDate: date, createActivities, user: { id: user_id } } = this.props;
     const keys = Object.keys(this.state);
     const activities = keys.map(activity => ({
       user_id,
       description: this.state[activity],
       type: activity,
+      date
     }));
 
     createActivities(activities);
