@@ -20,6 +20,7 @@ export const Aside = styled.aside`
   height: 100%;
   padding: 20px 0 0;
   background-color: ${palette.prim};
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.2), 0 10px 18px rgba(0, 0, 0, 0.2);
 `;
 
 export const Avatar = styled.div`

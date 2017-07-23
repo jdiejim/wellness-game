@@ -22,11 +22,8 @@ class Calendar extends Component {
 
   componentDidMount() {
     const { changeMonth, selectedDate } = this.props;
-    // let { daysList } = this.state;
 
-    // if (!daysList.length) {
     changeMonth(this.getDaysList(selectedDate));
-    // }
   }
 
   getDaysList(selectedDate) {

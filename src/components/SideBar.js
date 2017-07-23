@@ -20,14 +20,26 @@ const SideBar = () => {
           activeClassName="tab-selected"
           icon={dashboard}
         />
-        {/* <IconTab selected={false} icon={trophy} /> */}
         <IconTab
           to="/activities"
           activeClassName="tab-selected"
           icon={add}
         />
-        {/* <IconTab selected={false} icon={loyalty} />
-        <IconTab selected={false} icon={badge} /> */}
+        <IconTab
+          to="/leaders"
+          activeClassName="tab-selected"
+          icon={trophy}
+        />
+        <IconTab
+          to="/accountability"
+          activeClassName="tab-selected"
+          icon={loyalty}
+        />
+        <IconTab
+          to="/rewards"
+          activeClassName="tab-selected"
+          icon={badge}
+        />
       </SideNav>
     </Aside>
   );
