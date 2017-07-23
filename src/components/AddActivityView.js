@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import restIcon from '../assets/rest.svg';
+import nutritionIcon from '../assets/nutrition.svg';
+import sweatIcon from '../assets/sweat.svg';
+import personalIcon from '../assets/personal.svg';
+import { AddInput, InputIcon, AddSubmit } from '../elements';
 import './styles/AddActivityView.css';
 
 class AddActivityView extends Component {
@@ -14,6 +19,7 @@ class AddActivityView extends Component {
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.clearState = this.clearState.bind(this);
+    this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
   handleOnChange(e) {
@@ -40,6 +46,10 @@ class AddActivityView extends Component {
     this.clearState();
   }
 
+  handleSelectAll() {
+    console.log('hello');
+  }
+
   clearState() {
     this.setState({
       rest: '',
@@ -53,15 +63,70 @@ class AddActivityView extends Component {
     const { rest, nutrition, sweat, personal } = this.state;
 
     return (
-      <div className="add-activity-view">
-        <form onSubmit={this.handleOnSubmit}>
-          <input id="rest" onChange={this.handleOnChange} placeholder="rest" value={rest} />
-          <input id="sweat" onChange={this.handleOnChange} placeholder="sweat" value={sweat} />
-          <input id="nutrition" onChange={this.handleOnChange} placeholder="nutrition" value={nutrition} />
-          <input id="personal" onChange={this.handleOnChange} placeholder="personal" value={personal} />
-          <input type="submit" />
-        </form>
-      </div>
+      <section className="add-activity-view">
+        <section className="add-activity-wrapper">
+          <section className="calendar-wrapper">
+            <section className="calendar">
+              calendar
+            </section>
+          </section>
+          <form className="add-activity-form" onSubmit={this.handleOnSubmit}>
+            <header className="add-form-header">
+              <h1 className="add-form-date">17</h1>
+              <p className="add-form-day">Sunday</p>
+            </header>
+            <section className="activity-input-wrapper">
+              <article className="add-input-cell">
+                <InputIcon icon={restIcon} />
+                <AddInput
+                  id="rest"
+                  onChange={this.handleOnChange}
+                  placeholder="rest"
+                  value={rest}
+                />
+              </article>
+              <article className="add-input-cell">
+                <InputIcon icon={sweatIcon} />
+                <AddInput
+                  id="sweat"
+                  onChange={this.handleOnChange}
+                  placeholder="sweat"
+                  value={sweat}
+                />
+              </article>
+              <article className="add-input-cell">
+                <InputIcon icon={nutritionIcon} />
+                <AddInput
+                  id="nutrition"
+                  onChange={this.handleOnChange}
+                  placeholder="nutrition"
+                  value={nutrition}
+                />
+              </article>
+              <article className="add-input-cell">
+                <InputIcon icon={personalIcon} />
+                <AddInput
+                  id="personal"
+                  onChange={this.handleOnChange}
+                  placeholder="personal"
+                  value={personal}
+                />
+              </article>
+            </section>
+            <section className="add-btn-wrapper">
+              <AddSubmit
+                onClick={this.handleSelectAll}
+                type="button"
+                value="Quick"
+              />
+              <AddSubmit
+                type="submit"
+                value="Next"
+              />
+            </section>
+          </form>
+        </section>
+      </section>
     )
   }
 }

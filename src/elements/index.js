@@ -135,3 +135,66 @@ export const Banner = styled.section`
   transform: scale(1.8);
   animation: ${({ anim }) => anim ? `${bannerAnim} 0.5s cubic-bezier(.75,-0.32,.83,.67)` : null};
 `;
+
+export const AddInput = styled.input`
+  margin: 10px 0;
+  width: 90%;
+  padding: 5px;
+  background-color: transparent;
+  background-image: url(${({ icon }) => icon });
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  color: #FFF;
+  font-size: 20px;
+  font-weight: lighter;
+  &::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  &::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  &:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  &:-moz-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid #FFF;
+  }
+`;
+
+export const InputIcon = styled.div`
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  background-image: url(${({ icon }) => icon });
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+`;
+
+export const AddSubmit = styled.input.attrs({
+  value: ({ value }) => value,
+})`
+  display: block;
+  padding: 5px 20px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: lighter;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    border: 1px solid #FFF;
+    color: #FFF;
+  }
+`;
