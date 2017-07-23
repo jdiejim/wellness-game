@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import cancel from '../assets/cancel.svg';
 import { NavLink } from 'react-router-dom';
 import { lighten } from 'polished';
 
@@ -224,6 +225,10 @@ export const Day = styled.input.attrs({
   width: 14.2%;
   height: 40px;
   background-color: ${({ active }) => active ? '#FD6669' : 'transparent' };
+  background-image: ${({ cancel }) => !cancel ? 'none' : `url(${cancel})` };
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   border: none;
   border-radius: 50%;
   color: ${({ old }) => old ? '#DBDBDB' : palette.text };
