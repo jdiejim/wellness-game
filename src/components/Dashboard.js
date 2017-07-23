@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import AddActivityView from './AddActivityView';
+// import { Route } from 'react-router-dom';
 import './styles/Dashboard.css';
 
 class Dashboard extends Component {

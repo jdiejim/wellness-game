@@ -214,13 +214,20 @@ export const NextButton = styled.button`
   }
 `;
 
-export const Day = styled.article`
+export const Day = styled.input.attrs({
+  type: 'submit',
+  value: ({ day }) => day
+})`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 14.2%;
   height: 40px;
-  background-color: ${({ active }) => active ? '#F65631' : 'transparent' };
+  background-color: ${({ active }) => active ? '#FD6669' : 'transparent' };
   border: none;
   border-radius: 50%;
+  color: ${({ old }) => old ? '#DBDBDB' : palette.text };
+  &:focus {
+    outline: none;
+  }
 `

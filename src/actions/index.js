@@ -11,7 +11,9 @@ import {
   ADD_ACTIVITIES,
   ACTIVITIES_ARE_LOADING,
   ADD_ACTIVITIES_FAIL,
-  ADD_ACTIVITIES_SUCCESS
+  ADD_ACTIVITIES_SUCCESS,
+  SELECT_DATE,
+  CHANGE_MONTH
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
@@ -118,3 +120,6 @@ export const createActivities = (body) => {
     });
   }
 }
+
+export const selectDate = (date) => ({ type: SELECT_DATE, date });
+export const changeMonth = (daysList) => ({ type: CHANGE_MONTH, daysList });

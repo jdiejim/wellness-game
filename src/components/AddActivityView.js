@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Calendar from './Calendar';
+import moment from 'moment';
+import CalendarContainer from '../containers/CalendarContainer';
 import restIcon from '../assets/rest.svg';
 import nutritionIcon from '../assets/nutrition.svg';
 import sweatIcon from '../assets/sweat.svg';
@@ -31,11 +32,8 @@ class AddActivityView extends Component {
 
   handleOnSubmit(e) {
     e.preventDefault();
-
-    const { rest, sweat, nutrition, personal } = this.state;
     const { createActivities, user: { id: user_id } } = this.props;
     const keys = Object.keys(this.state);
-
     const activities = keys.map(activity => ({
       user_id,
       description: this.state[activity],
@@ -62,19 +60,22 @@ class AddActivityView extends Component {
 
   render() {
     const { rest, nutrition, sweat, personal } = this.state;
+    const { selectedDate } = this.props;
+    const day = moment(selectedDate).format('D');
+    const dayOfWeek = moment(selectedDate).format('dddd');
 
     return (
       <section className="add-activity-view">
         <section className="add-activity-wrapper">
           <section className="left-wrapper">
             <section className="calendar-wrapper">
-              <Calendar />
+              <CalendarContainer />
             </section>
           </section>
           <form className="add-activity-form" onSubmit={this.handleOnSubmit}>
             <header className="add-form-header">
-              <h1 className="add-form-date">17</h1>
-              <p className="add-form-day">Sunday</p>
+              <h1 className="add-form-date">{day}</h1>
+              <p className="add-form-day">{dayOfWeek}</p>
             </header>
             <section className="activity-input-wrapper">
               <article className="add-input-cell">
