@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { InputText, InputSubmit, LoginTitle } from '../elements';
+import { Link } from 'react-router-dom';
+import { InputText, InputSubmit, LoginTitle, StyledLink } from '../elements';
 import './styles/LogInForm.css';
 
 class LogInForm extends Component {
@@ -67,9 +68,11 @@ class LogInForm extends Component {
     const { first_name, last_name, email, password } = this.state;
     const { location: { pathname } } = this.props;
     const title = pathname === '/login' ? 'Log In' : 'Sign Up';
+    const register = pathname === '/login' ? <StyledLink to="/signup" color="#303F9F">Register</StyledLink> : null;
+    const formClass = pathname === '/login' ? 'login-form' : 'login-form signup-form';
 
     return (
-      <form className="login-form" onSubmit={this.handleOnSubmit}>
+      <form className={formClass} onSubmit={this.handleOnSubmit}>
         <LoginTitle>{title}</LoginTitle>
         <section className="input-wrapper">
           <InputText
@@ -102,8 +105,8 @@ class LogInForm extends Component {
           />
         </section>
         <section className="login-submit-wrapper">
+          {register}
           <InputSubmit id="submit-btn" path={pathname} />
-          {/* <p>or create an account</p> */}
         </section>
       </form>
     )

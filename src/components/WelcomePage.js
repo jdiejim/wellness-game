@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import LogInFormContainer from '../containers/LogInFormContainer';
 import { Banner } from '../elements';
 import './styles/WelcomePage.css';
@@ -22,7 +22,7 @@ class WelcomePage extends Component {
   }
 
   componentWillReceiveProps(np) {
-    if (this.props.userSuccess !== np.userSuccess) {
+    if (this.props.user.id !== np.user.id) {
       this.setState({ anim: !this.state.anim });
     }
   }
@@ -40,6 +40,8 @@ class WelcomePage extends Component {
       <section className="welcome-container">
         <nav className="welcome-nav">
           About
+          <Link to="/signup">signup</Link>
+          <Link to="/login">login</Link>
         </nav>
         <main className="welcome-main">
           <Banner anim={anim} size={2} />

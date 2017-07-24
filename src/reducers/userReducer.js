@@ -1,4 +1,4 @@
-import { LOG_IN, SIGN_UP, USER_IS_LOADING, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from '../utils/constants';
+import { LOG_IN, LOG_OUT, SIGN_UP, USER_IS_LOADING, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from '../utils/constants';
 
 export const userReducer = (state={}, action) => {
   switch (action.type) {
@@ -6,6 +6,9 @@ export const userReducer = (state={}, action) => {
       return action.user;
     case SIGN_UP:
       return action.user;
+    case LOG_OUT:
+    console.log('logout');
+      return {};
     default:
       return state;
   }

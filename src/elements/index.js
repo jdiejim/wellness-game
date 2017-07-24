@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import cancel from '../assets/cancel.svg';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { lighten } from 'polished';
 
 export const palette = {
@@ -8,7 +8,7 @@ export const palette = {
   prim:        '#3F51B5',
   primLight:   '#C5CAE9',
   primText:    '#FFFFFF',
-  accent:      '#00C8B5',
+  accent:      '#54b3a7',
   text:        '#212121',
   secText:     '#757575',
   divider:     '#BDBDBD',
@@ -103,11 +103,12 @@ export const InputSubmit = styled.input.attrs({
   background-color: ${palette.accent};
   border: none;
   border-radius: 2px;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.1), 0 10px 18px rgba(0, 0, 0, 0.1);
   color: #FFF;
   cursor: pointer;
   font-size: 20px;
   font-weight: lighter;
-  box-shadow: box-shadow: 0 14px 45px rgba(0, 0, 0, 0.2), 0 10px 18px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
   &:focus {
     outline: none;
   }
@@ -186,9 +187,9 @@ export const AddSubmit = styled.input.attrs({
   display: block;
   padding: 5px 20px;
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid ${({ color }) => !color ? 'rgba(255, 255, 255, 0.5)' : color };
   border-radius: 2px;
-  color: rgba(255, 255, 255, 0.5);
+  color: ${({ color }) => !color ? 'rgba(255, 255, 255, 0.5)' : color };
   cursor: pointer;
   font-size: 20px;
   font-weight: lighter;
@@ -196,8 +197,8 @@ export const AddSubmit = styled.input.attrs({
     outline: none;
   }
   &:hover {
-    border: 1px solid #FFF;
-    color: #FFF;
+    border: 1px solid ${({ color }) => !color ? '#FFF' : color };
+    color: ${({ color }) => !color ? '#FFF' : lighten(0.2, color) };
   }
 `;
 
@@ -236,4 +237,21 @@ export const Day = styled.input.attrs({
   &:focus {
     outline: none;
   }
-`
+`;
+
+export const StyledLink = styled(Link)`
+  display: block;
+  width: 170px;
+  border: none;
+  color: ${palette.accent};
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: normal;
+  text-decoration: none;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: ${palette.primDark};
+  }
+`;
