@@ -10,12 +10,20 @@ const create = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 }
 
-const index = (req, res, next) => {
-  Activity.getToday(req.body)
+const indexByDate = (req, res, next) => {
+  Activity.getUserActivitiesByDate(req.body)
     .then(data => {
       res.status(200).json({ data });
     })
     .catch(error => res.status(500).json({ error }));
 }
 
-module.exports = { create, index }
+const indexWeeklyChallenge = (req, res, next) => {
+  Activity.getWeeklyLeaders(req.body)
+    .then(data => {
+      res.status(200).json({ data })
+    })
+    .catch(error => res.status(500).json({ error }));
+}
+
+module.exports = { create, indexByDate, indexWeeklyChallenge }
