@@ -186,9 +186,9 @@ export const AddSubmit = styled.input.attrs({
   display: block;
   padding: 5px 20px;
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid ${({ color }) => !color ? 'rgba(255, 255, 255, 0.5)' : color };
   border-radius: 2px;
-  color: rgba(255, 255, 255, 0.5);
+  color: ${({ color }) => !color ? 'rgba(255, 255, 255, 0.5)' : color };
   cursor: pointer;
   font-size: 20px;
   font-weight: lighter;
@@ -196,8 +196,8 @@ export const AddSubmit = styled.input.attrs({
     outline: none;
   }
   &:hover {
-    border: 1px solid #FFF;
-    color: #FFF;
+    border: 1px solid ${({ color }) => !color ? '#FFF' : color };
+    color: ${({ color }) => !color ? '#FFF' : lighten(0.2, color) };
   }
 `;
 

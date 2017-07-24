@@ -1,5 +1,6 @@
 import {
   LOG_IN,
+  LOG_OUT,
   SIGN_UP,
   USER_IS_LOADING,
   USER_LOGIN_FAIL,
@@ -18,6 +19,7 @@ import {
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
+export const logOut = () => ({ type: LOG_OUT });
 export const userIsLoading = (bool) => ({ type: USER_IS_LOADING, userIsLoading: bool });
 export const userLogInFail = (bool) => ({ type: USER_LOGIN_FAIL, userFail: bool });
 export const userLogInSuccess = (bool) => ({ type: USER_LOGIN_SUCCESS, userSuccess: bool });
