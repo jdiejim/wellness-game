@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { InputText, InputSubmit, LoginTitle, StyledLink } from '../elements';
 import './styles/LogInForm.css';
 

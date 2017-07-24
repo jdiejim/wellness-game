@@ -158,6 +158,3 @@ export const selectDate = (date) => ({ type: SELECT_DATE, date });
 export const getToday = () => ({ type: TODAY });
 export const selectMonth = (selectedMonth) => ({ type: SELECT_MONTH, selectedMonth });
 export const changeMonth = (daysList) => ({ type: CHANGE_MONTH, daysList });
-
-
-GET_ACTIVITIES

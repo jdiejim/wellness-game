@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import cancel from '../assets/cancel.svg';
+// import cancel from '../assets/cancel.svg';
 import { NavLink, Link } from 'react-router-dom';
 import { lighten } from 'polished';
 

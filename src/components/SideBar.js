@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Aside, Avatar, IconTab, SideNav } from '../elements';
 import dashboard from '../assets/dashboard.svg';
 import trophy from '../assets/trophy.svg';

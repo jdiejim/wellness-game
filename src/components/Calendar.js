@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import next from '../assets/next.svg';
 import back from '../assets/back.svg';
-import cancel from '../assets/cancel.svg';
+// import cancel from '../assets/cancel.svg';
 import { getKey } from '../utils/constants';
 import { NextButton, Day } from '../elements';
 import './styles/Calendar.css';
@@ -45,7 +45,7 @@ class Calendar extends Component {
   }
 
   getDays() {
-    const { selectedDate, daysList, changeMonth } = this.props;
+    const { selectedDate, daysList } = this.props;
     const momentDate = moment(selectedDate);
     const currentDay = momentDate.format('D');
     const month = momentDate.format('MM');
