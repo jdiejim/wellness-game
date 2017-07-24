@@ -66,10 +66,11 @@ class LogInForm extends Component {
 
   render() {
     const { first_name, last_name, email, password } = this.state;
-    const { location: { pathname } } = this.props;
+    const { location: { pathname }, userFail } = this.props;
     const title = pathname === '/login' ? 'Log In' : 'Sign Up';
-    const register = pathname === '/login' ? <StyledLink to="/signup" color="#303F9F">Register</StyledLink> : null;
-    const formClass = pathname === '/login' ? 'login-form' : 'login-form signup-form';
+    const linkName = pathname === '/login' ? 'Register': 'Log In';
+    const newPath = pathname === '/login' ? '/signup': '/login';
+    const formClass = userFail ? 'user-fail-anim' : 'login-form';
 
     return (
       <form className={formClass} onSubmit={this.handleOnSubmit}>
@@ -105,7 +106,7 @@ class LogInForm extends Component {
           />
         </section>
         <section className="login-submit-wrapper">
-          {register}
+          <StyledLink to={newPath} color="#303F9F">{linkName}</StyledLink>
           <InputSubmit id="submit-btn" path={pathname} />
         </section>
       </form>

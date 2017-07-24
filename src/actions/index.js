@@ -38,6 +38,7 @@ export const logInUser = (body) => {
     })
     .then(({ user }) => {
       dispatch(userLogInSuccess(true));
+      dispatch(userLogInFail(false));
       dispatch(logIn(user));
     })
     .catch(err => {
@@ -63,6 +64,7 @@ export const signUpUser = (body) => {
     })
     .then(({ user }) => {
       dispatch(userLogInSuccess(true));
+      dispatch(userLogInFail(false));
       dispatch(signUp(user));
     })
     .catch(err => {
@@ -87,6 +89,7 @@ export const fetchUsers = () => {
       })
       .then(({ users }) => {
         dispatch(usersFetchSuccess(true));
+        dispatch(usersFetchFail(false));
         dispatch(getUsers(users));
       })
       .catch(err => {
@@ -115,6 +118,7 @@ export const createActivities = (body) => {
     })
     .then(({ activities }) => {
       dispatch(addActivitiesSuccess(true));
+      dispatch(addActivitiesFail(false));
       dispatch(addActivities(activities));
     })
     .catch(err => {

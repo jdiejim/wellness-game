@@ -28,7 +28,7 @@ class WelcomePage extends Component {
   }
 
   handleLogInSuccess(e) {
-    if (e.animationName !== 'login-appear') {
+    if (e.animationName !== 'login-appear' && e.animationName !== 'login-fail') {
       this.props.history.push('/dashboard');
     }
   }
