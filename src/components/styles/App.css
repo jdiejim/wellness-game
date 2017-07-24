@@ -1,14 +1,19 @@
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
 @keyframes logOutAppear {
   from { transform: translateX(200%); }
   to   { transform: translateX(0); }
 }
 
-.App {
+@keyframes sideBarAppear {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+.hidden .main-header {
+  display: none;
+}
+
+.hidden .side-bar {
+  display: none;
 }
 
 .main-header {
@@ -20,5 +25,9 @@
 
 .logout {
   margin: 10px 50px;
-  /*animation: logOutAppear 0.2s;*/
+  animation: logOutAppear 0.2s;
+}
+
+.side-bar {
+  animation: sideBarAppear 0.2s;
 }

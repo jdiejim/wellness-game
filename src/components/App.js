@@ -21,15 +21,16 @@ class App extends Component {
   }
 
   render() {
-    const { history, user, location } = this.props;
+    const { history, user, location: { pathname } } = this.props;
+    const appClassName = pathname === '/login' || pathname === '/signup' ? 'App hidden' : 'App';
 
     if (!user.id) {
       return <Redirect to="/login" />
     }
 
     return (
-      <main className="App">
-        <SideBar />
+      <main className={appClassName}>
+        <SideBar className="side-bar" />
         <header className="main-header">
           <AddSubmit
             onClick={this.handleLogOut}

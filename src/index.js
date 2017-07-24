@@ -13,8 +13,8 @@ render(
     <ConnectedRouter history={history}>
       <section>
         <Route path="/" component={AppContainer} />
-        <Route path="/login" type='replace' component={WelcomePageContainer} />
-        <Route path="/signup" type='replace' component={WelcomePageContainer} />
+        <Route path="/login" component={WelcomePageContainer} />
+        <Route path="/signup" component={WelcomePageContainer} />
       </section>
     </ConnectedRouter>
   </Provider>,
