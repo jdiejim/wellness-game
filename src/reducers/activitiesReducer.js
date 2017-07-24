@@ -1,8 +1,10 @@
-import { ADD_ACTIVITIES, ACTIVITIES_ARE_LOADING, ADD_ACTIVITIES_FAIL, ADD_ACTIVITIES_SUCCESS } from '../utils/constants';
+import { ADD_ACTIVITIES, ACTIVITIES_ARE_LOADING, ADD_ACTIVITIES_FAIL, ADD_ACTIVITIES_SUCCESS, GET_ACTIVITIES } from '../utils/constants';
 
 export const activitiesReducer = (state=[], action) => {
   switch (action.type) {
     case ADD_ACTIVITIES:
+      return [...action.activities];
+    case GET_ACTIVITIES:
       return [...action.activities];
     default:
       return state;

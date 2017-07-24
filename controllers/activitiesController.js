@@ -12,8 +12,8 @@ const create = (req, res, next) => {
 
 const indexByDate = (req, res, next) => {
   Activity.getUserActivitiesByDate(req.body)
-    .then(data => {
-      res.status(200).json({ data });
+    .then(activities => {
+      res.status(200).json({ activities });
     })
     .catch(error => res.status(500).json({ error }));
 }

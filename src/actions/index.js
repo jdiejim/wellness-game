@@ -15,7 +15,9 @@ import {
   ADD_ACTIVITIES_SUCCESS,
   SELECT_DATE,
   CHANGE_MONTH,
-  SELECT_MONTH
+  SELECT_MONTH,
+  TODAY,
+  GET_ACTIVITIES
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
@@ -128,6 +130,34 @@ export const createActivities = (body) => {
   }
 }
 
+export const getActivitiesByDate = (activities) => ({ type: GET_ACTIVITIES, activities });
+export const fetchActivities = (body) => {
+  return dispatch => {
+    dispatch(activitiesAreLoading(true));
+    fetch('api/v1/activities/date', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      dispatch(activitiesAreLoading(false));
+      return res.json();
+    })
+    .then(({ activities }) => {
+      dispatch(addActivitiesFail(false));
+      dispatch(getActivitiesByDate(activities));
+    })
+    .catch(err => {
+      dispatch(addActivitiesFail(true));
+      dispatch(addActivitiesSuccess(false));
+    });
+  }
+}
+
 export const selectDate = (date) => ({ type: SELECT_DATE, date });
+export const getToday = () => ({ type: TODAY });
 export const selectMonth = (selectedMonth) => ({ type: SELECT_MONTH, selectedMonth });
 export const changeMonth = (daysList) => ({ type: CHANGE_MONTH, daysList });
+
+
+GET_ACTIVITIES

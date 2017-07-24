@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 import Dashboard from '../components/Dashboard';
-import { fetchUsers } from '../actions';
+import { fetchUsers, getToday, fetchActivities } from '../actions';
 
-const mapStateToProps = ({ users }) => ({ users });
+const mapStateToProps = ({ users, selectedDate, activities, user }) => ({ users, selectedDate, activities, user });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchUsers: () => dispatch(fetchUsers()),
+  getToday: () => dispatch(getToday()),
+  fetchActivities: (body) => dispatch(fetchActivities(body))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

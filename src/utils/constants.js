@@ -12,8 +12,10 @@ export const ADD_ACTIVITIES = 'ADD_ACTIVITIES';
 export const ACTIVITIES_ARE_LOADING = 'ACTIVITIES_ARE_LOADING';
 export const ADD_ACTIVITIES_FAIL = 'ADD_ACTIVITIES_FAIL';
 export const ADD_ACTIVITIES_SUCCESS = 'ADD_ACTIVITIES_SUCCESS';
+export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const SELECT_DATE = 'SELECT_DATE';
 export const CHANGE_MONTH = 'CHANGE_MONTH';
 export const SELECT_MONTH = 'SELECT_MONTH';
+export const TODAY = 'TODAY';
 
 export const getKey = () => Math.round(Math.random() * Date.now());

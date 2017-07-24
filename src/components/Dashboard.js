@@ -3,21 +3,26 @@ import React, { Component } from 'react';
 import './styles/Dashboard.css';
 
 class Dashboard extends Component {
+  constructor() {
+    super();
+    this.state = {
+      activities: []
+    }
+  }
 
   componentDidMount() {
-    const { fetchUsers, users } = this.props;
-
+    const { fetchUsers, users, getToday, selectedDate, fetchActivities, user } = this.props;
     if (!users.length) {
       fetchUsers();
     }
+    getToday();
+    fetchActivities({ date: selectedDate, user_id: user.id });
   }
 
   render() {
     return (
       <section className='dashboard'>
-        {/* <section className='banner-dashboard'></section> */}
-        dashboard
-        {/* <AddActivityView /> */}
+
       </section>
     )
   }

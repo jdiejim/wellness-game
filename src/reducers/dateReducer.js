@@ -1,10 +1,12 @@
-import { SELECT_DATE, CHANGE_MONTH, SELECT_MONTH } from '../utils/constants';
+import { SELECT_DATE, CHANGE_MONTH, SELECT_MONTH, TODAY } from '../utils/constants';
 import moment from 'moment';
 
 export const dateReducer = (state=moment().format(), action) => {
   switch (action.type) {
     case SELECT_DATE:
       return moment(action.date).format();
+    case TODAY:
+      return moment().format();
     default:
       return state;
   }
