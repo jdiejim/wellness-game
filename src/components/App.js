@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import WelcomePageContainer from '../containers/WelcomePageContainer';
 import SideBar from './SideBar';
 import DashboardContainer from '../containers/DashboardContainer';
 import AddActivityContainer from '../containers/AddActivityContainer';
@@ -21,7 +20,7 @@ class App extends Component {
   }
 
   render() {
-    const { history, user, location: { pathname } } = this.props;
+    const { user, location: { pathname } } = this.props;
     const appClassName = pathname === '/login' || pathname === '/signup' ? 'App hidden' : 'App';
 
     if (!user.id) {
