@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import ActivityCell from './ActivityCell';
 import { getKey } from '../utils/constants';
-// import { Route } from 'react-router-dom';
 import './styles/Dashboard.css';
 
 class Dashboard extends Component {
@@ -25,7 +24,6 @@ class Dashboard extends Component {
 
   render() {
     const { activities } = this.props;
-    console.log(activities);
     const activitiesList = activities.map(activity => <ActivityCell key={getKey()} activity={activity} />)
 
     return (
@@ -41,7 +39,6 @@ class Dashboard extends Component {
           <section className="activities-list">
             {activitiesList}
           </section>
-          <section className="challenge-week"></section>
         </section>
       </section>
     )

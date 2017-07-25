@@ -7,10 +7,10 @@ import success from '../assets/success.svg';
 import './styles/ActivityCell.css';
 
 class ActivityCell extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      isCompleted: false
+      isCompleted: this.props.status || false
     }
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -22,7 +22,7 @@ class ActivityCell extends Component {
 
   render() {
     const { isCompleted } = this.state;
-    const { type, description } = this.props.activity;
+    const { type, description, status } = this.props.activity;
     const icons = {
       rest: { icon: rest, color: '#3F51B5'},
       nutrition: { icon: nutrition, color: '#54b3a7'},
