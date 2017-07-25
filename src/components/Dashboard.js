@@ -30,12 +30,19 @@ class Dashboard extends Component {
 
     return (
       <section className="dashboard">
-        <section className="charts-wrapper"></section>
-        <section className="activities-list">
-          {activitiesList}
+
+        <section className="charts-wrapper">
+
         </section>
-        <section className="dashboard-calendar"></section>
-        <section className="challenge-week"></section>
+        <section className="activities-wrapper">
+          <section className="dashboard-calendar">
+
+          </section>
+          <section className="activities-list">
+            {activitiesList}
+          </section>
+          <section className="challenge-week"></section>
+        </section>
       </section>
     )
   }
