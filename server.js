@@ -17,9 +17,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(express.static(path.resolve(__dirname, './build')));
+app.use(express.static(path.resolve(__dirname, './public')));
 app.use('/api/v1', router);
-// app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, './build', 'index.html')));
+app.get('/*', (req, res) => res.sendFile(path.resolve(__dirname, './public', 'index.html')));
 
 
 passport.serializeUser(function(user, done) {
