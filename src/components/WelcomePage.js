@@ -39,9 +39,7 @@ class WelcomePage extends Component {
     return (
       <section className="welcome-container">
         <nav className="welcome-nav">
-          About
-          <Link to="/signup">signup</Link>
-          <Link to="/login">login</Link>
+          <a href="/auth/github">git</a>
         </nav>
         <main className="welcome-main">
           <Banner anim={anim} size={2} />

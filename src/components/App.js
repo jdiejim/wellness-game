@@ -24,7 +24,7 @@ class App extends Component {
     const appClassName = pathname === '/login' || pathname === '/signup' ? 'App hidden' : 'App';
 
     if (!user.id) {
-      return <Redirect to="/login" />
+      // return <Redirect to="/login" />
     }
 
     return (
