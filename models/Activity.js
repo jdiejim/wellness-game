@@ -24,4 +24,5 @@ const getWeeklyLeaders = ({ date }) => {
                     .select('user_id', 'first_name', 'last_name', 'email', 'avatar', 'activities.id', 'description', 'type', 'status', 'points', 'date');
 }
 
+
 module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders };
