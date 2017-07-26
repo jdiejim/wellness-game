@@ -50,4 +50,12 @@ const indexUserWeeklyActivities = (req, res, next) => {
     .catch(error => res.status(500).json({ error }))
 }
 
-module.exports = { create, indexByDate, indexWeeklyChallenge, userWeeklyPoints, userTotalWeeklyPoints, indexUserWeeklyActivities }
+const updateActivityStatus = (req, res, next) => {
+  Activity.changeActivityStatus(req.body)
+    .then(data => {
+      res.status(200).json({ data })
+    })
+    .catch(error => res.status(500).json({ error }))
+}
+
+module.exports = { create, indexByDate, indexWeeklyChallenge, userWeeklyPoints, userTotalWeeklyPoints, indexUserWeeklyActivities, updateActivityStatus }

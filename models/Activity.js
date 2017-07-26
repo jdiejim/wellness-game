@@ -58,4 +58,11 @@ const getWeeklyActivities = ({ date, user_id }) => {
                     .select('user_id', 'activities.id', 'description', 'type', 'status', 'date');
 }
 
-module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyPoints, getWeeklyTotalPoints, getWeeklyActivities };
+const changeActivityStatus = ({ id, status }) => {
+  return db('activities').where({ id })
+                    // .select()
+                    .update({status}, ['*'])
+
+}
+
+module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyPoints, getWeeklyTotalPoints, getWeeklyActivities, changeActivityStatus };

@@ -13,6 +13,7 @@ router.post('/activities/week', activitiesController.indexUserWeeklyActivities);
 router.post('/activities/leaders', activitiesController.indexWeeklyChallenge);
 router.post('/activities/user/points', activitiesController.userWeeklyPoints);
 router.post('/activities/user/points/total', activitiesController.userTotalWeeklyPoints);
+router.put('/activities/user/activity', activitiesController.updateActivityStatus);
 
 module.exports = router;
  
