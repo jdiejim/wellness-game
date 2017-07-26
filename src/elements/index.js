@@ -211,6 +211,7 @@ export const NextButton = styled.button`
   background-position: center;
   background-size: contain;
   border: none;
+  transform: scale(${({ scale }) => !scale ? 1 : scale });
   opacity: 0.7;
   &:hover {
     opacity: 0.3;
