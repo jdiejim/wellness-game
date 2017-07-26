@@ -10,10 +10,16 @@ class ActivityCell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCompleted: this.props.status || false
+      isCompleted: false
     }
 
     this.handleOnClick = this.handleOnClick.bind(this);
+  }
+
+  componentDidMount() {
+    const { status: isCompleted } = this.props.activity;
+
+    this.setState({ isCompleted });
   }
 
   handleOnClick() {

@@ -60,7 +60,6 @@ const getWeeklyActivities = ({ date, user_id }) => {
 
 const changeActivityStatus = ({ id, status }) => {
   return db('activities').where({ id })
-                    // .select()
                     .update({status}, ['*'])
 
 }
