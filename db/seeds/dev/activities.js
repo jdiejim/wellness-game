@@ -81,6 +81,7 @@ const buildSweat = () => getRandomSweat() + getRandomBetween(1, 10);
 const buildRest = () => getRandomRest() + getRandomBetween(1, 10);
 
 const getActivities = (user_id) => {
+  const today = +moment().format('D');
   const array = [];
   const qty = getRandomBetween(10, 30);
   const date = moment().subtract(qty/2, 'days');
@@ -90,7 +91,7 @@ const getActivities = (user_id) => {
       user_id,
       description: buildRest(),
       type: 'rest',
-      status: getBoolean(),
+      status: +moment(date).format('D') > today ? false : getBoolean(),
       points: 5,
       date: date.format(),
     })
@@ -98,7 +99,7 @@ const getActivities = (user_id) => {
       user_id,
       description: buildSweat(),
       type: 'sweat',
-      status: getBoolean(),
+      status: +moment(date).format('D') > today ? false : getBoolean(),
       points: 5,
       date: date.format(),
     })
@@ -106,7 +107,7 @@ const getActivities = (user_id) => {
       user_id,
       description: buildNutrition(),
       type: 'nutrition',
-      status: getBoolean(),
+      status: +moment(date).format('D') > today ? false : getBoolean(),
       points: 5,
       date: date.format(),
     })
@@ -114,7 +115,7 @@ const getActivities = (user_id) => {
       user_id,
       description: buildPersonal(),
       type: 'personal',
-      status: getBoolean(),
+      status: +moment(date).format('D') > today ? false : getBoolean(),
       points: 5,
       date: date.format(),
     })
@@ -125,8 +126,8 @@ const getActivities = (user_id) => {
 }
 
 const first = [
-  'Juan',
-  'Natalia',
+  'James',
+  'Peter',
   'Bruce',
   'Luke',
   'Darth',
@@ -142,14 +143,14 @@ const first = [
 
   const last = [
   'Jim',
-  'Colo',
+  'Griffin',
   'Wayne',
   'Bond',
   'Vader',
   'Skywalker',
   'Solo',
   'Ren',
-  'bacca',
+  'Bacca',
   'Scott',
   'Shrute',
   'Halpert',

@@ -9,7 +9,10 @@ router.post('/users', usersController.create);
 router.get('/users', usersController.index);
 router.post('/activities', activitiesController.create);
 router.post('/activities/date', activitiesController.indexByDate);
+router.post('/activities/week', activitiesController.indexUserWeeklyActivities);
 router.post('/activities/leaders', activitiesController.indexWeeklyChallenge);
+router.post('/activities/user/points', activitiesController.userWeeklyPoints);
+router.post('/activities/user/points/total', activitiesController.userTotalWeeklyPoints);
 
 module.exports = router;
  

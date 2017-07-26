@@ -5,13 +5,22 @@ import {
   userReducer,
   userIsLoadingReducer,
   userLogInFailReducer,
-  userLogInSuccessReducer
+  userLogInSuccessReducer,
+  userWeeklyPointsReducer,
+  userWeeklyPointsLoadingReducer,
+  userWeeklyPointsFailReducer,
+  userWeeklyMaxPointsReducer,
+  userWeeklyMaxPointsLoadingReducer,
+  userWeeklyMaxPointsFailReducer,
+  userWeeklyActivitiesReducer,
+  userWeeklyActivitiesLoadingReducer,
+  userWeeklyActivitiesFailReducer
 } from './userReducer';
 import {
   usersReducer,
   usersAreLoadingReducer,
   usersFetchFailReducer,
-  usersFetchSuccessReducer
+  usersFetchSuccessReducer,
 } from './usersReducer';
 import {
   activitiesReducer,
@@ -26,6 +35,15 @@ export default combineReducers({
   userIsLoading: userIsLoadingReducer,
   userFail: userLogInFailReducer,
   userSuccess: userLogInSuccessReducer,
+  userWeeklyPoints: userWeeklyPointsReducer,
+  userWeeklyLoading: userWeeklyPointsLoadingReducer,
+  userWeeklyFail: userWeeklyPointsFailReducer,
+  userMaxPoints: userWeeklyMaxPointsReducer,
+  userWeeklyMaxLoading: userWeeklyMaxPointsLoadingReducer,
+  userWeeklyMaxFail: userWeeklyMaxPointsFailReducer,
+  userWeeklyActivities: userWeeklyActivitiesReducer,
+  userWeeklyActivitiesLoading: userWeeklyActivitiesLoadingReducer,
+  userWeeklyActivitiesFail: userWeeklyActivitiesFailReducer,
   users: usersReducer,
   usersAreLoading: usersAreLoadingReducer,
   usersFail: usersFetchFailReducer,
