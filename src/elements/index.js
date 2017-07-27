@@ -211,6 +211,7 @@ export const NextButton = styled.button`
   background-position: center;
   background-size: contain;
   border: none;
+  cursor: pointer;
   transform: scale(${({ scale }) => !scale ? 1 : scale });
   opacity: 0.7;
   &:hover {
@@ -255,4 +256,16 @@ export const StyledLink = styled(Link)`
   &:hover {
     color: ${palette.primDark};
   }
+`;
+
+export const DashDay = styled.div`
+  flex: ${({ main }) => main ? 1.5 : 1 };
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: ${({ main }) => main ? '30px' : '16px' };
+  font-weight: lighter;
+  opacity: ${({ main }) => main ? 1 : 0.8 };
+  transition: all 1s;
 `;

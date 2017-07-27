@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import ActivityCell from './ActivityCell';
+import DailyCalendar from './DailyCalendar';
 import CategoryChart from './CategoryChart';
 import CircularProgressbar from 'react-circular-progressbar';
 import { getKey } from '../utils/constants';
 import './styles/Dashboard.css';
-import next from '../assets/next.svg';
-import back from '../assets/back.svg';
 import { NextButton } from '../elements';
 
 class Dashboard extends Component {
@@ -26,14 +25,16 @@ class Dashboard extends Component {
       fetchUsers();
     }
     const date = moment().format();
+
     fetchActivities({ date, user_id: user.id });
     fetchWeeklyPoints({ date, user_id: user.id });
     fetchWeeklyMaxPoints({ date, user_id: user.id });
     fetchWeeklyActivities({ date, user_id: user.id });
   }
 
-  handleChangeDay() {
-    // const { id } = e.target;
+  handleChangeDay(e) {
+    const { id } = e.target;
+    console.log(id);
     // // const { selectDate, selectedDate, changeMonth } = this.props;
     // const day = moment().format('DD');
     // let month;
@@ -58,7 +59,7 @@ class Dashboard extends Component {
   getChartData() {
     const today = +moment().format('D');
     const { userWeeklyActivities: activities } = this.props;
-    console.log(activities);
+    // console.log(activities);
     const dataObj = activities
     .filter(d => today > +moment(d.date).format('D'))
     .map(activity => {
@@ -68,7 +69,7 @@ class Dashboard extends Component {
       return { dateAxis, type, points };
     })
     .reduce((obj, e) => {
-      console.log(e);
+      // console.log(e);
       if (!obj[e.dateAxis]) {
         obj[e.dateAxis] = {
           rest: 0,
@@ -106,8 +107,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    // TODO: Incompleted
-    // TODO: math
     const { activities, userWeeklyPoints, userMaxPoints, userWeeklyActivities } = this.props;
     const activitiesList = activities.map(activity => <ActivityCell key={getKey()} activity={activity} />)
     const progress = !userWeeklyPoints ? 0 : Math.round((userWeeklyPoints / userMaxPoints) * 100);
@@ -115,7 +114,6 @@ class Dashboard extends Component {
     const pending = !userWeeklyPoints ? 0 : userMaxPoints/5 - userWeeklyPoints/5;
     const incompleted = this.getIncompleted();
     const chartData = this.getChartData();
-    console.log(chartData);
 
     return (
       <section className="dashboard">
@@ -146,27 +144,7 @@ class Dashboard extends Component {
           <CategoryChart data={chartData} />
         </section>
         <section className="activities-wrapper">
-          <section className="dashboard-calendar">
-            <NextButton id="dash-previous" icon={back} scale={1.5} />
-            <div className="dash-days-list">
-              <div className="dash-day">
-                Jul 23
-              </div>
-              <div className="dash-day">
-                Jul 24
-              </div>
-              <div className="dash-main">
-                Jul 25
-              </div>
-              <div className="dash-day">
-                Jul 26
-              </div>
-              <div className="dash-day">
-                Jul 27
-              </div>
-            </div>
-            <NextButton id="dash-next" icon={next} scale={1.5} />
-          </section>
+          <DailyCalendar />
           <section className="activities-list">
             {activitiesList}
           </section>
