@@ -265,14 +265,14 @@ export const DashDay = styled.div`
   align-items: center;
   justify-content: center;
   color: #000;
-  font-weight: lighter;
   opacity: ${({ main }) => main ? 1 : 0.8 };
   transition: all 1s;
   h3 {
     font-size: ${({ main }) => main ? '30px' : '16px' };
-    font-weight: lighter;
+    font-weight: ${({ main }) => main ? 'normal' : 'lighter' };
   }
   p {
-    font-size: ${({ main }) => main ? '10px' : '12px' };
+    font-size: ${({ main }) => main ? '12px' : '10px' };
+    font-weight: ${({ main }) => main ? 'normal' : 'lighter' };
   }
 `;

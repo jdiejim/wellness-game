@@ -20,22 +20,18 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const { fetchUsers, users, fetchActivities, user, fetchWeeklyPoints, fetchWeeklyMaxPoints, fetchWeeklyActivities } = this.props;
+    const { fetchUsers, users, user, fetchWeeklyActivities } = this.props;
     if (!users.length) {
       fetchUsers();
     }
     const date = moment().format();
 
-    fetchActivities({ date, user_id: user.id });
-    fetchWeeklyPoints({ date, user_id: user.id });
-    fetchWeeklyMaxPoints({ date, user_id: user.id });
     fetchWeeklyActivities({ date, user_id: user.id });
   }
 
   getChartData() {
     const today = +moment().format('D');
     const { userWeeklyActivities: activities } = this.props;
-    // console.log(activities);
     const dataObj = activities
     .filter(d => today > +moment(d.date).format('D'))
     .map(activity => {
@@ -45,7 +41,6 @@ class Dashboard extends Component {
       return { dateAxis, type, points };
     })
     .reduce((obj, e) => {
-      // console.log(e);
       if (!obj[e.dateAxis]) {
         obj[e.dateAxis] = {
           rest: 0,
@@ -83,7 +78,14 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { activities, userWeeklyPoints, userMaxPoints, userWeeklyActivities, updateStatus, updateCancel, dashDate } = this.props;
+    const { userWeeklyActivities, updateStatus, updateCancel, dashDate } = this.props;
+
+    const total = userWeeklyActivities.length;
+    const completed = userWeeklyActivities.filter(e => e.status === true).length;
+    const pending = total - completed;
+    const progress = total === 0 ? 0 : Math.round((completed / total) * 100);
+    const incompleted = this.getIncompleted();
+    const chartData = this.getChartData();
     const activitiesList = userWeeklyActivities.filter(f => moment(f.date).format('MMM DD') === moment(dashDate).format('MMM DD')).map(activity =>
       <ActivityCell
         key={getKey()}
@@ -92,11 +94,6 @@ class Dashboard extends Component {
         updateCancel={updateCancel}
       />
     );
-    const progress = !userWeeklyPoints ? 0 : Math.round((userWeeklyPoints / userMaxPoints) * 100);
-    const completed = !userWeeklyPoints ? 0 : userWeeklyPoints/5;
-    const pending = !userWeeklyPoints ? 0 : userMaxPoints/5 - userWeeklyPoints/5;
-    const incompleted = this.getIncompleted();
-    const chartData = this.getChartData();
 
     return (
       <section className="dashboard">

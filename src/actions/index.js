@@ -18,12 +18,6 @@ import {
   SELECT_MONTH,
   TODAY,
   GET_ACTIVITIES,
-  USER_WEEKLY_POINTS,
-  USER_WEEKLY_POINTS_ARE_LOADING,
-  USER_WEEKLY_POINTS_FAIL,
-  USER_WEEKLY_MAX_POINTS,
-  USER_WEEKLY_MAX_POINTS_ARE_LOADING,
-  USER_WEEKLY_MAX_POINTS_FAIL,
   USER_WEEKLY_ACTIVITIES,
   USER_WEEKLY_ACTIVITIES_ARE_LOADING,
   USER_WEEKLY_ACTIVITIES_FAIL,
@@ -171,58 +165,6 @@ export const getToday = () => ({ type: TODAY });
 export const selectMonth = (selectedMonth) => ({ type: SELECT_MONTH, selectedMonth });
 export const changeMonth = (daysList) => ({ type: CHANGE_MONTH, daysList });
 
-export const getWeeklyPoints = (userWeeklyPoints) => ({ type: USER_WEEKLY_POINTS, userWeeklyPoints });
-export const weeklyPointsFailAreLoading = (bool) => ({ type: USER_WEEKLY_POINTS_ARE_LOADING, userWeeklyLoading: bool });
-export const weeklyPointsFail = (bool) => ({ type: USER_WEEKLY_POINTS_FAIL, userWeeklyFail: bool });
-
-export const fetchWeeklyPoints = (body) => {
-  return dispatch => {
-    dispatch(weeklyPointsFailAreLoading(true));
-    fetch('api/v1/activities/user/points/', {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(res => {
-      dispatch(weeklyPointsFailAreLoading(false));
-      return res.json();
-    })
-    .then(({ sum }) => {
-      dispatch(weeklyPointsFail(false));
-      dispatch(getWeeklyPoints(sum));
-    })
-    .catch(err => {
-      dispatch(weeklyPointsFail(true));
-    });
-  }
-}
-
-export const getWeeklyMaxPoints = (userMaxPoints) => ({ type: USER_WEEKLY_MAX_POINTS, userMaxPoints });
-export const weeklyMaxPointsAreLoading = (bool) => ({ type: USER_WEEKLY_MAX_POINTS_ARE_LOADING, userWeeklyMaxLoading: bool });
-export const weeklyMaxPointsFail = (bool) => ({ type: USER_WEEKLY_MAX_POINTS_FAIL, userWeeklyMaxFail: bool });
-
-export const fetchWeeklyMaxPoints = (body) => {
-  return dispatch => {
-    dispatch(weeklyMaxPointsAreLoading(true));
-    fetch('api/v1/activities/user/points/total', {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(res => {
-      dispatch(weeklyMaxPointsAreLoading(false));
-      return res.json();
-    })
-    .then(({ sum }) => {
-      dispatch(weeklyMaxPointsFail(false));
-      dispatch(getWeeklyMaxPoints(sum));
-    })
-    .catch(err => {
-      dispatch(weeklyMaxPointsFail(true));
-    });
-  }
-}
-
 export const getWeeklyActivities = (userWeeklyActivities) => ({ type: USER_WEEKLY_ACTIVITIES, userWeeklyActivities });
 export const weeklyActivitiesAreLoading = (bool) => ({ type: USER_WEEKLY_ACTIVITIES_ARE_LOADING, userWeeklyActivitiesLoading: bool });
 export const weeklyActivitiesFail = (bool) => ({ type: USER_WEEKLY_ACTIVITIES_FAIL, userWeeklyActivitiesFail: bool });
@@ -273,7 +215,7 @@ export const updateCancelFail = (bool) => ({ type: UPDATE_CANCEL_FAIL, updateCan
 
 export const updateCancel = (body) => {
   return dispatch => {
-    fetch('api/v1/activities/user/activity/cancel', {
+    fetch('api/v1/activities/user/cancel', {
       method: 'PUT',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }

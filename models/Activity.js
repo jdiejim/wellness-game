@@ -24,29 +24,6 @@ const getWeeklyLeaders = ({ date }) => {
                     .select('user_id', 'first_name', 'last_name', 'email', 'avatar', 'activities.id', 'description', 'type', 'status', 'points', 'date');
 }
 
-const getWeeklyPoints = ({ date, user_id }) => {
-  const offset = moment(date).isoWeekday();
-  const start = moment(date).subtract(offset - 1, 'days').format();
-  const end = moment(date).add(7 - offset, 'days').format();
-
-  return db('users').join('activities', 'users.id' , '=', 'activities.user_id')
-                    .whereBetween('date', [start, end])
-                    .andWhere({ user_id })
-                    .andWhere('status', 'true')
-                    .sum('points');
-}
-
-const getWeeklyTotalPoints = ({ date, user_id }) => {
-  const offset = moment(date).isoWeekday();
-  const start = moment(date).subtract(offset - 1, 'days').format();
-  const end = moment(date).add(7 - offset, 'days').format();
-
-  return db('users').join('activities', 'users.id' , '=', 'activities.user_id')
-                    .whereBetween('date', [start, end])
-                    .andWhere({ user_id })
-                    .sum('points');
-}
-
 const getWeeklyActivities = ({ date, user_id }) => {
   const offset = moment(date).isoWeekday();
   const start = moment(date).subtract(offset - 1, 'days').format();
@@ -77,4 +54,4 @@ const changeCancelActivity = ({ id, is_canceled }) => {
                          .update({ is_canceled }, ['*'])
 }
 
-module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyPoints, getWeeklyTotalPoints, getWeeklyActivities, changeActivityStatus, changeCancelActivity };
+module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyActivities, changeActivityStatus, changeCancelActivity };

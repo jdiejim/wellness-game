@@ -94,14 +94,14 @@ class DailyCalendar extends Component {
       if (e === mainDate) {
         return (
           <DashDay key={getKey()} main={true}>
-            <h3>{date}</h3>
             <p>{text}</p>
+            <h3>{date}</h3>
           </DashDay>
         )
       }
       return (
         <DashDay key={getKey()} main={false}>
-          <p>{date}</p>
+          <h3>{date}</h3>
           <p>{text}</p>
         </DashDay>
       )

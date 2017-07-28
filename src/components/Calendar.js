@@ -40,7 +40,7 @@ class Calendar extends Component {
 
       daysList.push({ day, month });
     }
-    console.log('triggerd');
+    
     return daysList;
   }
 
