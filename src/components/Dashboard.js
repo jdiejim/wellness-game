@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import ActivityCell from './ActivityCell';
-import DailyCalendar from './DailyCalendar';
+import DailyCalendarContainer from '../containers/DailyCalendarContainer';
 import CategoryChart from './CategoryChart';
 import CircularProgressbar from 'react-circular-progressbar';
 import { getKey } from '../utils/constants';
@@ -20,7 +20,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const { fetchUsers, users, getToday, fetchActivities, user, fetchWeeklyPoints, fetchWeeklyMaxPoints, fetchWeeklyActivities } = this.props;
+    const { fetchUsers, users, fetchActivities, user, fetchWeeklyPoints, fetchWeeklyMaxPoints, fetchWeeklyActivities } = this.props;
     if (!users.length) {
       fetchUsers();
     }
@@ -30,30 +30,6 @@ class Dashboard extends Component {
     fetchWeeklyPoints({ date, user_id: user.id });
     fetchWeeklyMaxPoints({ date, user_id: user.id });
     fetchWeeklyActivities({ date, user_id: user.id });
-  }
-
-  handleChangeDay(e) {
-    const { id } = e.target;
-    console.log(id);
-    // // const { selectDate, selectedDate, changeMonth } = this.props;
-    // const day = moment().format('DD');
-    // let month;
-    // let year;
-    //
-    // switch (id) {
-    //   case 'next':
-    //     month = moment(selectedDate).add(1, 'month').format('MM');
-    //     year = moment(selectedDate).add(1, 'month').format('YYYY');
-    //     break;
-    //   default:
-    //     month = moment(selectedDate).subtract(1, 'month').format('MM');
-    //     year = moment(selectedDate).subtract(1, 'month').format('YYYY');
-    //     break;
-    // }
-    // const date = `${year}-${month}-${day}T09:20:56-06:00`;
-    //
-    // selectDate(date);
-    // changeMonth(this.getDaysList(date));
   }
 
   getChartData() {
@@ -107,8 +83,15 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { activities, userWeeklyPoints, userMaxPoints, userWeeklyActivities } = this.props;
-    const activitiesList = activities.map(activity => <ActivityCell key={getKey()} activity={activity} />)
+    const { activities, userWeeklyPoints, userMaxPoints, userWeeklyActivities, updateStatus, updateCancel, dashDate } = this.props;
+    const activitiesList = userWeeklyActivities.filter(f => moment(f.date).format('MMM DD') === moment(dashDate).format('MMM DD')).map(activity =>
+      <ActivityCell
+        key={getKey()}
+        activity={activity}
+        updateStatus={updateStatus}
+        updateCancel={updateCancel}
+      />
+    );
     const progress = !userWeeklyPoints ? 0 : Math.round((userWeeklyPoints / userMaxPoints) * 100);
     const completed = !userWeeklyPoints ? 0 : userWeeklyPoints/5;
     const pending = !userWeeklyPoints ? 0 : userMaxPoints/5 - userWeeklyPoints/5;
@@ -144,7 +127,7 @@ class Dashboard extends Component {
           <CategoryChart data={chartData} />
         </section>
         <section className="activities-wrapper">
-          <DailyCalendar />
+          <DailyCalendarContainer />
           <section className="activities-list">
             {activitiesList}
           </section>

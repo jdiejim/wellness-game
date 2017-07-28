@@ -1,4 +1,34 @@
-.list-cell {
+@keyframes clicked-completed {
+  0% {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+    transform: scale(1);
+  }
+  75% {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 30px, rgba(0, 0, 0, 0.23) 0px 6px 10px;
+    transform: scale(1.3);
+  }
+  100% {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+    transform: scale(1);
+  }
+}
+
+@keyframes clicked {
+  0% {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+    transform: scale(1);
+  }
+  75% {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 30px, rgba(0, 0, 0, 0.23) 0px 6px 10px;
+    transform: scale(1.3);
+  }
+  100% {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+    transform: scale(1);
+  }
+}
+
+.list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,11 +42,18 @@
   display: flex;
   align-items: center;
   width: 80%;
+  /*background-color: red;*/
 }
 
 .description {
   font-size: 25px;
   font-weight: lighter;
+  /*background-color: blue;*/
+}
+
+.item-canceled .description {
+  color: #DBDBDB;
+  text-decoration: line-through;
 }
 
 .activity-type {
@@ -30,50 +67,61 @@
   opacity: 0.8;
 }
 
-.complete-btn {
+.cell-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activity-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  padding: 10px;
-  background-color: #f27474;
-  border: 1px solid #f27474;
-  border-radius: 20px;
-  color: #FFF;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: lighter;
-  transition: all 0.2s, color 0s;
-}
-
-.complete-btn:hover {
-  background-color: #f27474;
-  border: 2px solid #f27474;
-  color: #FFF;
-  opacity: 0.3;
-}
-
-.success-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   margin-right: 20px;
-  background-color: #25AE88;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: 1px solid #25AE88;
+  border: none;
   border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
   color: transparent;
   cursor: pointer;
   font-size: 16px;
   font-weight: lighter;
-  opacity: 0.8;
-  transition: all 0.2s, color 0s;
+  opacity: 0.4;
+  transition: all 0.2s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+  animation: clicked 0.2s;
 }
 
-.success-btn:hover {
+.activity-btn:hover {
   opacity: 0.6;
+}
+
+.clicked {
+  animation: clicked 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  margin-right: 20px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+  color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: lighter;
+  transition: all 0.2s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+  opacity: 1;
+  animation: clicked-completed 0.2s;
 }

@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { dateReducer, daysListReducer, monthReducer } from './dateReducer';
+import {
+  dateReducer,
+  daysListReducer,
+  monthReducer,
+  dashDateReducer
+} from './dateReducer';
 import {
   userReducer,
   userIsLoadingReducer,
@@ -26,7 +31,9 @@ import {
   activitiesReducer,
   activitiesAreLoadingReducer,
   addActivitiesFailReducer,
-  addActivitiesSuccessReducer
+  addActivitiesSuccessReducer,
+  updateStatusReducer,
+  updateCancelReducer
 } from './activitiesReducer';
 
 export default combineReducers({
@@ -52,7 +59,10 @@ export default combineReducers({
   activitiesAreLoading: activitiesAreLoadingReducer,
   addActivitiesFail: addActivitiesFailReducer,
   addActivitiesSuccess: addActivitiesSuccessReducer,
+  updateFail: updateStatusReducer,
+  updateCancel: updateCancelReducer,
   selectedDate: dateReducer,
   selectedMonth: monthReducer,
-  daysList: daysListReducer
+  daysList: daysListReducer,
+  dashDate: dashDateReducer
 })

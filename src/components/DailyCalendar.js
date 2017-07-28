@@ -19,9 +19,11 @@ class DailyCalendar extends Component {
   }
 
   componentDidMount() {
+    const { changeDashDate } = this.props;
     const mainDate = moment().format();
     const dates = this.getDates(mainDate);
 
+    changeDashDate(mainDate)
     this.setState({ mainDate, dates });
   }
 
@@ -40,8 +42,8 @@ class DailyCalendar extends Component {
 
   handleChangeDay(e) {
     const { id } = e.target;
-    const { mainDate: oldDate } = this.state;
-    const newDate = moment(oldDate);
+    const { dashDate, changeDashDate, fetchWeeklyActivities, user: { id: user_id } } = this.props;
+    const newDate = moment(dashDate);
 
     switch (id) {
       case 'dash-next':
@@ -54,6 +56,9 @@ class DailyCalendar extends Component {
 
     const mainDate = newDate.format();
     const dates = this.getDates(mainDate);
+
+    changeDashDate(mainDate);
+    fetchWeeklyActivities({ user_id, date: mainDate });
 
     this.setState({ dates, mainDate });
   }

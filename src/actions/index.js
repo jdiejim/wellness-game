@@ -26,7 +26,10 @@ import {
   USER_WEEKLY_MAX_POINTS_FAIL,
   USER_WEEKLY_ACTIVITIES,
   USER_WEEKLY_ACTIVITIES_ARE_LOADING,
-  USER_WEEKLY_ACTIVITIES_FAIL
+  USER_WEEKLY_ACTIVITIES_FAIL,
+  UPDATE_FAIL,
+  UPDATE_CANCEL_FAIL,
+  SELECT_DASH_DATE
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
@@ -224,7 +227,7 @@ export const getWeeklyActivities = (userWeeklyActivities) => ({ type: USER_WEEKL
 export const weeklyActivitiesAreLoading = (bool) => ({ type: USER_WEEKLY_ACTIVITIES_ARE_LOADING, userWeeklyActivitiesLoading: bool });
 export const weeklyActivitiesFail = (bool) => ({ type: USER_WEEKLY_ACTIVITIES_FAIL, userWeeklyActivitiesFail: bool });
 
-export const fetchWeeklyActivities = (body) => {
+export const fetchWeeklyActivities = (body, ) => {
   return dispatch => {
     dispatch(weeklyActivitiesAreLoading(true));
     fetch('api/v1/activities/week', {
@@ -245,3 +248,44 @@ export const fetchWeeklyActivities = (body) => {
     });
   }
 }
+
+export const updateStatusFail = (bool) => ({ type: UPDATE_FAIL, updateFail: bool })
+
+export const updateStatus = (body, weekBody) => {
+  return dispatch => {
+    fetch('api/v1/activities/user/status', {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      dispatch(updateStatusFail(false));
+      // dispatch(fetchWeeklyActivities(weekBody));
+      return res.json();
+    })
+    .catch(err => {
+      dispatch(updateStatusFail(true));
+    });
+  }
+}
+
+export const updateCancelFail = (bool) => ({ type: UPDATE_CANCEL_FAIL, updateCancel: bool })
+
+export const updateCancel = (body) => {
+  return dispatch => {
+    fetch('api/v1/activities/user/activity/cancel', {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      dispatch(updateCancelFail(false));
+      return res.json();
+    })
+    .catch(err => {
+      dispatch(updateCancelFail(true));
+    });
+  }
+}
+
+export const changeDashDate = (dashDate) => ({ type: SELECT_DASH_DATE, dashDate });
