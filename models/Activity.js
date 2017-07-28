@@ -25,9 +25,9 @@ const getWeeklyLeaders = ({ date }) => {
 }
 
 const getWeeklyPoints = ({ date, user_id }) => {
-  const offset = moment(date).weekday();
-  const start = moment(date).subtract(offset, 'days').format();
-  const end = moment(date).add(6 - offset, 'days').format();
+  const offset = moment(date).isoWeekday();
+  const start = moment(date).subtract(offset - 1, 'days').format();
+  const end = moment(date).add(7 - offset, 'days').format();
 
   return db('users').join('activities', 'users.id' , '=', 'activities.user_id')
                     .whereBetween('date', [start, end])
@@ -37,9 +37,9 @@ const getWeeklyPoints = ({ date, user_id }) => {
 }
 
 const getWeeklyTotalPoints = ({ date, user_id }) => {
-  const offset = moment(date).weekday();
-  const start = moment(date).subtract(offset, 'days').format();
-  const end = moment(date).add(6 - offset, 'days').format();
+  const offset = moment(date).isoWeekday();
+  const start = moment(date).subtract(offset - 1, 'days').format();
+  const end = moment(date).add(7 - offset, 'days').format();
 
   return db('users').join('activities', 'users.id' , '=', 'activities.user_id')
                     .whereBetween('date', [start, end])
@@ -48,9 +48,9 @@ const getWeeklyTotalPoints = ({ date, user_id }) => {
 }
 
 const getWeeklyActivities = ({ date, user_id }) => {
-  const offset = moment(date).weekday();
-  const start = moment(date).subtract(offset, 'days').format();
-  const end = moment(date).add(6 - offset, 'days').format();
+  const offset = moment(date).isoWeekday();
+  const start = moment(date).subtract(offset - 1, 'days').format();
+  const end = moment(date).add(7 - offset, 'days').format();
 
   return db('users').join('activities', 'users.id' , '=', 'activities.user_id')
                     .whereBetween('date', [start, end])

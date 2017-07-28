@@ -261,11 +261,18 @@ export const StyledLink = styled(Link)`
 export const DashDay = styled.div`
   flex: ${({ main }) => main ? 1.5 : 1 };
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #000;
-  font-size: ${({ main }) => main ? '30px' : '16px' };
   font-weight: lighter;
   opacity: ${({ main }) => main ? 1 : 0.8 };
   transition: all 1s;
+  h3 {
+    font-size: ${({ main }) => main ? '30px' : '16px' };
+    font-weight: lighter;
+  }
+  p {
+    font-size: ${({ main }) => main ? '10px' : '12px' };
+  }
 `;

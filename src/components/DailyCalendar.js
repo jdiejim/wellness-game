@@ -29,18 +29,31 @@ class DailyCalendar extends Component {
 
   getDates(main) {
     const dates = [];
+    const today = moment().format();
+    const offset = moment(today).isoWeekday();
+    const min = moment(today).subtract(offset, 'days').format();
+    const max = moment(today).add(7 - offset, 'days').format();
+
     const start = moment(main).subtract(2, 'days');
 
     for (let i = 0; i < 5; i++) {
       const day = moment(start).add(i, 'days');
 
-      dates.push(day.format());
+      if ( day.format() >= min && day.format() <= max) {
+        dates.push(day.format());
+      } else {
+        dates.push(null);
+      }
     }
 
     return dates;
   }
 
   handleChangeDay(e) {
+    const today = moment().format();
+    const offset = moment(today).isoWeekday();
+    const min = moment(today).subtract(offset, 'days').format();
+    const max = moment(today).add(7 - offset, 'days').format();
     const { id } = e.target;
     const { dashDate, changeDashDate, fetchWeeklyActivities, user: { id: user_id } } = this.props;
     const newDate = moment(dashDate);
@@ -57,26 +70,39 @@ class DailyCalendar extends Component {
     const mainDate = newDate.format();
     const dates = this.getDates(mainDate);
 
-    changeDashDate(mainDate);
-    fetchWeeklyActivities({ user_id, date: mainDate });
+    if (mainDate >= min && mainDate <= max) {
+      changeDashDate(mainDate);
+      fetchWeeklyActivities({ user_id, date: mainDate });
 
-    this.setState({ dates, mainDate });
+      this.setState({ dates, mainDate });
+    }
+
   }
 
   render() {
     const { dates, mainDate } = this.state;
     const datesList = dates.map(e => {
-      const text = moment(e).format('MMM DD');
+      const date = moment(e).format('MMM DD');
+      const text = moment(e).format('dddd');
+
+      if (e === null) {
+        return (
+          <DashDay key={getKey()} main={false}></DashDay>
+        )
+      }
+
       if (e === mainDate) {
         return (
           <DashDay key={getKey()} main={true}>
-            {text}
+            <h3>{date}</h3>
+            <p>{text}</p>
           </DashDay>
         )
       }
       return (
         <DashDay key={getKey()} main={false}>
-          {text}
+          <p>{date}</p>
+          <p>{text}</p>
         </DashDay>
       )
     })

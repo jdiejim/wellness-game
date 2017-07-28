@@ -84,7 +84,7 @@ class AddActivityView extends Component {
                 <AddInput
                   id="rest"
                   onChange={this.handleOnChange}
-                  placeholder="rest"
+                  placeholder="eg. sleep +7"
                   value={rest}
                 />
               </article>
@@ -93,7 +93,7 @@ class AddActivityView extends Component {
                 <AddInput
                   id="sweat"
                   onChange={this.handleOnChange}
-                  placeholder="sweat"
+                  placeholder="eg. run 5 miles"
                   value={sweat}
                 />
               </article>
@@ -102,7 +102,7 @@ class AddActivityView extends Component {
                 <AddInput
                   id="nutrition"
                   onChange={this.handleOnChange}
-                  placeholder="nutrition"
+                  placeholder="eg. eat salad"
                   value={nutrition}
                 />
               </article>
@@ -111,7 +111,7 @@ class AddActivityView extends Component {
                 <AddInput
                   id="personal"
                   onChange={this.handleOnChange}
-                  placeholder="personal"
+                  placeholder="eg. go to the movies"
                   value={personal}
                 />
               </article>
