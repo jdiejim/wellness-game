@@ -13,7 +13,8 @@ router.post('/activities/week', activitiesController.indexUserWeeklyActivities);
 router.post('/activities/leaders', activitiesController.indexWeeklyChallenge);
 router.post('/activities/user/points', activitiesController.userWeeklyPoints);
 router.post('/activities/user/points/total', activitiesController.userTotalWeeklyPoints);
-router.put('/activities/user/activity', activitiesController.updateActivityStatus);
+router.put('/activities/user/status', activitiesController.updateActivityStatus);
+router.put('/activities/user/activity/cancel', activitiesController.updateActivityIsCanceled);
 
 module.exports = router;
  

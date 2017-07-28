@@ -55,13 +55,26 @@ const getWeeklyActivities = ({ date, user_id }) => {
   return db('users').join('activities', 'users.id' , '=', 'activities.user_id')
                     .whereBetween('date', [start, end])
                     .andWhere({ user_id })
-                    .select('user_id', 'activities.id', 'description', 'type', 'status', 'date');
+                    .orderBy('id', 'asc')
+                    .select('user_id', 'activities.id', 'description', 'type', 'status', 'is_canceled', 'date');
 }
 
 const changeActivityStatus = ({ id, status }) => {
   return db('activities').where({ id })
-                    .update({status}, ['*'])
+                         .update({ status }, ['*'])
 
 }
 
-module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyPoints, getWeeklyTotalPoints, getWeeklyActivities, changeActivityStatus };
+const changeCancelActivity = ({ id, is_canceled }) => {
+  if (is_canceled) {
+    const status = false;
+
+    return db('activities').where({ id })
+                           .update({ is_canceled, status }, ['*'])
+  }
+
+  return db('activities').where({ id })
+                         .update({ is_canceled }, ['*'])
+}
+
+module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyPoints, getWeeklyTotalPoints, getWeeklyActivities, changeActivityStatus, changeCancelActivity };

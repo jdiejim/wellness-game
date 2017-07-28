@@ -1,4 +1,4 @@
-import { SELECT_DATE, CHANGE_MONTH, SELECT_MONTH, TODAY } from '../utils/constants';
+import { SELECT_DATE, CHANGE_MONTH, SELECT_MONTH, TODAY, SELECT_DASH_DATE } from '../utils/constants';
 import moment from 'moment';
 
 export const dateReducer = (state=moment().format(), action) => {
@@ -25,6 +25,15 @@ export const monthReducer = (state=moment().format(), action) => {
   switch (action.type) {
     case SELECT_MONTH:
       return action.selectedMonth;
+    default:
+      return state;
+  }
+}
+
+export const dashDateReducer = (state=moment().format(), action) => {
+  switch (action.type) {
+    case SELECT_DASH_DATE:
+      return action.dashDate;
     default:
       return state;
   }

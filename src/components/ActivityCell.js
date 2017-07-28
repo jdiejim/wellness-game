@@ -4,31 +4,55 @@ import nutrition from '../assets/nutrition.svg';
 import personal from '../assets/personal.svg';
 import sweat from '../assets/sweat.svg';
 import success from '../assets/success.svg';
+import successInactive from '../assets/success-inactive.svg';
+import error from '../assets/error.svg';
 import './styles/ActivityCell.css';
 
 class ActivityCell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCompleted: false
+      id: '',
+      isCompleted: false,
+      isCanceled: false
     }
 
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleComplete = this.handleComplete.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentDidMount() {
-    const { status: isCompleted } = this.props.activity;
+    const { id, status: isCompleted, is_canceled: isCanceled } = this.props.activity;
 
-    this.setState({ isCompleted });
+    this.setState({ id, isCompleted, isCanceled });
   }
 
-  handleOnClick() {
-    this.setState({ isCompleted: !this.state.isCompleted });
+  handleComplete() {
+    const { isCanceled, isCompleted } = this.state;
+    const { fetchWeeklyActivities, updateStatus, activity: { id, user_id, date } } = this.props;
+
+    if (!isCanceled) {
+      updateStatus({ id, status: !isCompleted }, { user_id, date });
+      this.setState({ isCompleted: !isCompleted });
+    }
+  }
+
+  handleCancel() {
+    const { isCanceled, isCompleted } = this.state;
+    const { updateCancel, activity: { id } } = this.props;
+
+    if (!isCanceled) {
+      this.setState({ isCanceled: !isCanceled, isCompleted: false });
+    } else {
+      this.setState({ isCanceled: !isCanceled });
+    }
+
+    updateCancel({ id, is_canceled: !isCanceled });
   }
 
   render() {
-    const { isCompleted } = this.state;
-    const { type, description, status } = this.props.activity;
+    const { isCompleted, isCanceled } = this.state;
+    const { type, description, status, date, id } = this.props.activity;
     const icons = {
       rest: { icon: rest, color: '#3F51B5'},
       nutrition: { icon: nutrition, color: '#54b3a7'},
@@ -37,20 +61,43 @@ class ActivityCell extends Component {
     };
     const icon = {
       backgroundImage: `url(${icons[type].icon})`,
-      backgroundColor: icons[type].color
+      backgroundColor: isCompleted ? icons[type].color : '#a29f9f'
+    };
+    const caceledIcon = {
+      backgroundImage: `url(${icons[type].icon})`,
+      backgroundColor: '#DBDBDB'
+    };
+    const typeIcon = isCanceled ? caceledIcon : icon;
+    const listClass = isCanceled ? 'list-item item-canceled' : 'list-item'
+    const successClass = isCompleted ? 'clicked' : 'activity-btn';
+    const successIcon = isCanceled ? successInactive : success;
+    const successBtnStyle = {
+      backgroundImage: `url(${successIcon})`,
+    };
+    const cancelBtn = isCanceled ? 'clicked' : 'activity-btn';
+    const cancelBtnStyle = {
+      backgroundImage: `url(${error})`,
     };
 
-    const buttonClass = isCompleted ? 'success-btn' : 'complete-btn';
-    const successIcon = isCompleted ? success : '';
-    const buttonIcon = { backgroundImage: `url(${successIcon})` };
 
     return (
-      <section className="list-cell">
+      <section className={listClass}>
         <div className="info-separator">
-          <div className="activity-type" style={icon}></div>
+          <div className="activity-type" style={typeIcon}></div>
           <h2 className="description">{description}</h2>
         </div>
-        <button onClick={this.handleOnClick} className={buttonClass} style={buttonIcon}>pending</button>
+        <div className="cell-button-wrapper">
+          <button
+            className={cancelBtn}
+            onClick={this.handleCancel}
+            style={cancelBtnStyle}>
+          </button>
+          <button
+            className={successClass}
+            onClick={this.handleComplete}
+            style={successBtnStyle}>
+          </button>
+        </div>
       </section>
     )
   }
