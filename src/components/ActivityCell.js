@@ -29,7 +29,7 @@ class ActivityCell extends Component {
 
   handleComplete() {
     const { isCanceled, isCompleted } = this.state;
-    const { fetchWeeklyActivities, updateStatus, activity: { id, user_id, date } } = this.props;
+    const { updateStatus, activity: { id, user_id, date } } = this.props;
 
     if (!isCanceled) {
       updateStatus({ id, status: !isCompleted }, { user_id, date });
@@ -39,7 +39,7 @@ class ActivityCell extends Component {
 
   handleCancel() {
     const { isCanceled, isCompleted } = this.state;
-    const { updateCancel, activity: { id } } = this.props;
+    const { updateCancel, activity: { id, user_id, date } } = this.props;
 
     if (!isCanceled) {
       this.setState({ isCanceled: !isCanceled, isCompleted: false });
@@ -47,7 +47,7 @@ class ActivityCell extends Component {
       this.setState({ isCanceled: !isCanceled });
     }
 
-    updateCancel({ id, is_canceled: !isCanceled });
+    updateCancel({ id, is_canceled: !isCanceled }, { user_id, date });
   }
 
   render() {

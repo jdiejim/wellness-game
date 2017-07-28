@@ -202,7 +202,7 @@ export const updateStatus = (body, weekBody) => {
     })
     .then(res => {
       dispatch(updateStatusFail(false));
-      // dispatch(fetchWeeklyActivities(weekBody));
+      dispatch(fetchWeeklyActivities(weekBody));
       return res.json();
     })
     .catch(err => {
@@ -213,7 +213,7 @@ export const updateStatus = (body, weekBody) => {
 
 export const updateCancelFail = (bool) => ({ type: UPDATE_CANCEL_FAIL, updateCancel: bool })
 
-export const updateCancel = (body) => {
+export const updateCancel = (body, weekBody) => {
   return dispatch => {
     fetch('api/v1/activities/user/cancel', {
       method: 'PUT',
@@ -222,6 +222,7 @@ export const updateCancel = (body) => {
     })
     .then(res => {
       dispatch(updateCancelFail(false));
+      dispatch(fetchWeeklyActivities(weekBody));
       return res.json();
     })
     .catch(err => {

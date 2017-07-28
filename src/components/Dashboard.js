@@ -79,7 +79,6 @@ class Dashboard extends Component {
 
   render() {
     const { userWeeklyActivities, updateStatus, updateCancel, dashDate } = this.props;
-
     const total = userWeeklyActivities.length;
     const completed = userWeeklyActivities.filter(e => e.status === true).length;
     const pending = total - completed;

@@ -44,15 +44,11 @@ If the user can’t perform it, mark it a 1.
 |        |           |
 
 
-* change placeholdres
 * add text to navs
 * add title to CategoryChart
 * add title to summary-wrapper
 * add foucs on button and tabs
 * dont clear inputs just on field tha tis wrong
-* remove pending add chechbox
-* button to mark as uncomplete
-* remove 5 point make it 1 points
 * calendar mark
 * calendar buttonClass
 * quick fill

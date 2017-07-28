@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch(fetchUsers()),
   fetchWeeklyActivities: (body) => dispatch(fetchWeeklyActivities(body)),
   updateStatus: (body, weekBody) => dispatch(updateStatus(body, weekBody)),
-  updateCancel: (body) => dispatch(updateCancel(body)),
+  updateCancel: (body, weekBody) => dispatch(updateCancel(body, weekBody)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
