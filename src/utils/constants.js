@@ -23,5 +23,8 @@ export const USER_WEEKLY_ACTIVITIES_FAIL = 'USER_WEEKLY_ACTIVITIES_FAIL';
 export const UPDATE_FAIL = 'UPDATE_FAIL';
 export const UPDATE_CANCEL_FAIL = 'UPDATE_CANCEL_FAIL';
 export const SELECT_DASH_DATE = 'SELECT_DASH_DATE';
+export const GET_LEADER_BOARDS = 'GET_LEADER_BOARDS';
+export const LEADER_BOARDS_ARE_LOADING = 'LEADER_BOARDS_ARE_LOADING';
+export const LEADER_BOARDS_FAIL = 'LEADER_BOARDS_FAIL';
 
 export const getKey = () => Math.round(Math.random() * Date.now());

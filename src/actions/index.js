@@ -23,7 +23,10 @@ import {
   USER_WEEKLY_ACTIVITIES_FAIL,
   UPDATE_FAIL,
   UPDATE_CANCEL_FAIL,
-  SELECT_DASH_DATE
+  SELECT_DASH_DATE,
+  GET_LEADER_BOARDS,
+  LEADER_BOARDS_ARE_LOADING,
+  LEADER_BOARDS_FAIL
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
@@ -169,7 +172,7 @@ export const getWeeklyActivities = (userWeeklyActivities) => ({ type: USER_WEEKL
 export const weeklyActivitiesAreLoading = (bool) => ({ type: USER_WEEKLY_ACTIVITIES_ARE_LOADING, userWeeklyActivitiesLoading: bool });
 export const weeklyActivitiesFail = (bool) => ({ type: USER_WEEKLY_ACTIVITIES_FAIL, userWeeklyActivitiesFail: bool });
 
-export const fetchWeeklyActivities = (body, ) => {
+export const fetchWeeklyActivities = (body) => {
   return dispatch => {
     dispatch(weeklyActivitiesAreLoading(true));
     fetch('api/v1/activities/week', {
@@ -232,3 +235,29 @@ export const updateCancel = (body, weekBody) => {
 }
 
 export const changeDashDate = (dashDate) => ({ type: SELECT_DASH_DATE, dashDate });
+
+export const getLeaderboards = (leaderboards) => ({ type: GET_LEADER_BOARDS, leaderboards });
+export const leaderboardsAreLoading = (bool) => ({ type: LEADER_BOARDS_ARE_LOADING, leaderboardsLoading: bool });
+export const leaderboardsFail = (bool) => ({ type: LEADER_BOARDS_FAIL, leaderboardsFail: bool });
+
+export const fetchLeaderboards = (body) => {
+  return dispatch => {
+    dispatch(leaderboardsAreLoading(true));
+    fetch('api/v1/activities/leaders', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      dispatch(leaderboardsAreLoading(false));
+      return res.json();
+    })
+    .then(({ leaderboards }) => {
+      dispatch(leaderboardsFail(false));
+      dispatch(getLeaderboards(leaderboards));
+    })
+    .catch(err => {
+      dispatch(leaderboardsFail(true));
+    });
+  }
+}

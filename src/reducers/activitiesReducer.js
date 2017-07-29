@@ -1,10 +1,14 @@
-import { ADD_ACTIVITIES,
+import {
+  ADD_ACTIVITIES,
   ACTIVITIES_ARE_LOADING,
   ADD_ACTIVITIES_FAIL,
   ADD_ACTIVITIES_SUCCESS,
   GET_ACTIVITIES,
   UPDATE_FAIL,
-  UPDATE_CANCEL_FAIL
+  UPDATE_CANCEL_FAIL,
+  GET_LEADER_BOARDS,
+  LEADER_BOARDS_ARE_LOADING,
+  LEADER_BOARDS_FAIL
 } from '../utils/constants';
 
 export const activitiesReducer = (state=[], action) => {
@@ -58,6 +62,33 @@ export const updateCancelReducer = (state=false, action) => {
   switch (action.type) {
     case UPDATE_CANCEL_FAIL:
       return action.updateCancel;
+    default:
+      return state;
+  }
+}
+
+export const leaderboardsReducer = (state=[], action) => {
+  switch (action.type) {
+    case GET_LEADER_BOARDS:
+      return action.leaderboards;
+    default:
+      return state;
+  }
+}
+
+export const leaderboardsLoadingReducer = (state=false, action) => {
+  switch (action.type) {
+    case LEADER_BOARDS_ARE_LOADING:
+      return action.leaderboardsLoading;
+    default:
+      return state;
+  }
+}
+
+export const leaderboardsFailReducer = (state=false, action) => {
+  switch (action.type) {
+    case LEADER_BOARDS_FAIL:
+      return action.leaderboardsFail;
     default:
       return state;
   }

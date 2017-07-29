@@ -20,8 +20,8 @@ const indexByDate = (req, res, next) => {
 
 const indexWeeklyChallenge = (req, res, next) => {
   Activity.getWeeklyLeaders(req.body)
-    .then(data => {
-      res.status(200).json({ data })
+    .then(leaderboards => {
+      res.status(200).json({ leaderboards })
     })
     .catch(error => res.status(500).json({ error }));
 }

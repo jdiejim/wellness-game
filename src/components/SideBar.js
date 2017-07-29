@@ -25,7 +25,7 @@ const SideBar = () => {
           icon={add}
         />
         <IconTab
-          to="/leaders"
+          to="/leaderboards"
           activeClassName="tab-selected"
           icon={trophy}
         />

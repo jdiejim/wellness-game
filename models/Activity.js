@@ -15,13 +15,17 @@ const createActivity = (activities) => {
 }
 
 const getWeeklyLeaders = ({ date }) => {
-  const offset = moment(date).weekday();
-  const start = moment(date).subtract(offset - 1, 'day').format();
-  const end = moment(date).add(offset + 1, 'day').format();
+  const offset = moment(date).isoWeekday();
+  const start = moment(date).subtract(offset - 1, 'days').format();
+  const end = moment(date).add(7 - offset, 'days').format();
 
-  return db('users').join('activities', 'users.id' , '=', 'activities.user_id')
-                    .whereBetween('date', [start, end])
-                    .select('user_id', 'first_name', 'last_name', 'email', 'avatar', 'activities.id', 'description', 'type', 'status', 'points', 'date');
+  return db.with('completed', db.raw(`SELECT user_id, COUNT(status) as completed FROM activities WHERE status = true AND date BETWEEN '${start}' AND '${end}' GROUP BY user_id`))
+    .orderBy('completed', 'desc')
+    .join('users', 'users.id', '=', 'completed.user_id')
+    .from('completed')
+    .with('total', db.raw(`SELECT user_id, COUNT(status) as total FROM activities WHERE date BETWEEN '${start}' AND '${end}' GROUP BY user_id`))
+    .innerJoin('total', 'users.id', '=', 'total.user_id')
+    .select('total.user_id', 'first_name', 'last_name', 'avatar', 'completed', 'total')
 }
 
 const getWeeklyActivities = ({ date, user_id }) => {

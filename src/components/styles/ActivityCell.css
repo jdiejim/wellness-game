@@ -93,7 +93,6 @@
   font-weight: lighter;
   opacity: 0.4;
   transition: all 0.2s;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
   animation: clicked 0.2s;
 }
 
@@ -102,7 +101,6 @@
 }
 
 .clicked {
-  animation: clicked 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,7 +119,14 @@
   font-size: 16px;
   font-weight: lighter;
   transition: all 0.2s;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
   opacity: 1;
   animation: clicked-completed 0.2s;
 }
+/*
+.complete-animated .clicked {
+  animation: clicked-completed 0.2s;
+}
+
+.btn-animated .activity-btn {
+  animation: clicked 0.2s;
+}*/

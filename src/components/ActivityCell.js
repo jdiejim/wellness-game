@@ -14,9 +14,8 @@ class ActivityCell extends Component {
     this.state = {
       id: '',
       isCompleted: false,
-      isCanceled: false
+      isCanceled: false,
     }
-
     this.handleComplete = this.handleComplete.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
@@ -51,7 +50,7 @@ class ActivityCell extends Component {
   }
 
   render() {
-    const { isCompleted, isCanceled } = this.state;
+    const { isCompleted, isCanceled, anim } = this.state;
     const { type, description, status, date, id } = this.props.activity;
     const icons = {
       rest: { icon: rest, color: '#3F51B5'},

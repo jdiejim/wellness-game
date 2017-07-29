@@ -27,7 +27,10 @@ import {
   addActivitiesFailReducer,
   addActivitiesSuccessReducer,
   updateStatusReducer,
-  updateCancelReducer
+  updateCancelReducer,
+  leaderboardsReducer,
+  leaderboardsLoadingReducer,
+  leaderboardsFailReducer
 } from './activitiesReducer';
 
 export default combineReducers({
@@ -47,6 +50,9 @@ export default combineReducers({
   activitiesAreLoading: activitiesAreLoadingReducer,
   addActivitiesFail: addActivitiesFailReducer,
   addActivitiesSuccess: addActivitiesSuccessReducer,
+  leaderboards: leaderboardsReducer,
+  leaderboardsLoading: leaderboardsLoadingReducer,
+  leaderboardsFail: leaderboardsFailReducer,
   updateFail: updateStatusReducer,
   updateCancel: updateCancelReducer,
   selectedDate: dateReducer,
