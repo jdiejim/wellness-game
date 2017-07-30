@@ -33,11 +33,22 @@ const getWeeklyActivities = ({ date, user_id }) => {
   const start = moment(date).subtract(offset - 1, 'days').format();
   const end = moment(date).add(7 - offset, 'days').format();
 
-  return db('users').join('activities', 'users.id' , '=', 'activities.user_id')
-                    .whereBetween('date', [start, end])
-                    .andWhere({ user_id })
-                    .orderBy('id', 'asc')
-                    .select('user_id', 'activities.id', 'description', 'type', 'status', 'is_canceled', 'date');
+  return db('activities').whereBetween('date', [start, end])
+                         .andWhere({ user_id })
+                         .orderBy('id', 'asc')
+                         .select('user_id', 'activities.id', 'description', 'type', 'status', 'is_canceled', 'date');
+}
+
+const getMonthlyActivities = ({ date, user_id }) => {
+  const month = moment(date).format('MM');
+  const year = moment(date).format('YYYY');
+  const start = moment(date).format(`${year}-${month}-01T09:20:56-06:00`);
+  const end = moment(start).add(1, 'month').format();
+
+  return db('activities').whereBetween('date', [start, end])
+                         .andWhere({ user_id })
+                         .orderBy('id', 'asc')
+                         .select('user_id', 'activities.id', 'description', 'type', 'status', 'is_canceled', 'date');
 }
 
 const changeActivityStatus = ({ id, status }) => {
@@ -58,4 +69,4 @@ const changeCancelActivity = ({ id, is_canceled }) => {
                          .update({ is_canceled }, ['*'])
 }
 
-module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyActivities, changeActivityStatus, changeCancelActivity };
+module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyActivities, changeActivityStatus, changeCancelActivity, getMonthlyActivities };

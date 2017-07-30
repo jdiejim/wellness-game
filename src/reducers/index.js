@@ -30,7 +30,10 @@ import {
   updateCancelReducer,
   leaderboardsReducer,
   leaderboardsLoadingReducer,
-  leaderboardsFailReducer
+  leaderboardsFailReducer,
+  monthlyActivitiesReducer,
+  monthlyActivitiesLoadingReducer,
+  monthlyActivitiesFailReducer
 } from './activitiesReducer';
 
 export default combineReducers({
@@ -42,6 +45,9 @@ export default combineReducers({
   userWeeklyActivities: userWeeklyActivitiesReducer,
   userWeeklyActivitiesLoading: userWeeklyActivitiesLoadingReducer,
   userWeeklyActivitiesFail: userWeeklyActivitiesFailReducer,
+  monthlyActivities: monthlyActivitiesReducer,
+  monthlyActivitiesLoading: monthlyActivitiesLoadingReducer,
+  monthlyActivitiesFail: monthlyActivitiesFailReducer,
   users: usersReducer,
   usersAreLoading: usersAreLoadingReducer,
   usersFail: usersFetchFailReducer,

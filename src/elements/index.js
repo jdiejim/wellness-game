@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 // import cancel from '../assets/cancel.svg';
 import { NavLink, Link } from 'react-router-dom';
-import { lighten, darken } from 'polished';
+import { lighten } from 'polished';
 
 export const palette = {
   primDark:    '#303F9F',
@@ -231,9 +231,19 @@ export const Day = styled.input.attrs({
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 14.2%;
+  width: 40px;
   height: 40px;
-  background-color: ${({ active }) => active ? '#FD6669' : 'transparent' };
+  background-color: ${({ active }) => {
+    switch (active) {
+      case 'active':
+        return '#FD6669';
+      case 'exists':
+        return 'rgba(84, 179, 167, 0.7)';
+      default:
+        return 'transparent';
+    }
+  }
+};
   background-image: ${({ cancel }) => !cancel ? 'none' : `url(${cancel})` };
   background-repeat: no-repeat;
   background-position: center;
@@ -241,6 +251,7 @@ export const Day = styled.input.attrs({
   border: none;
   border-radius: 50%;
   color: ${({ old }) => old ? '#DBDBDB' : palette.text };
+  cursor: ${({ active }) => !active ? 'default' : 'pointer' };
   &:focus {
     outline: none;
   }

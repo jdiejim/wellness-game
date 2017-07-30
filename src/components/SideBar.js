@@ -5,7 +5,6 @@ import trophy from '../assets/trophy.svg';
 import add from '../assets/add.svg';
 import loyalty from '../assets/loyalty.svg';
 import badge from '../assets/badge.svg';
-import profile from '../assets/profile.jpg';
 import './styles/SideBar.css';
 
 const SideBar = ({ user: { first_name, last_name, avatar } }) => {

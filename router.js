@@ -10,6 +10,7 @@ router.get('/users', usersController.index);
 router.post('/activities', activitiesController.create);
 router.post('/activities/date', activitiesController.indexByDate);
 router.post('/activities/week', activitiesController.indexUserWeeklyActivities);
+router.post('/activities/month', activitiesController.indexUserMonthlyActivities);
 router.post('/activities/leaders', activitiesController.indexWeeklyChallenge);
 router.put('/activities/user/status', activitiesController.updateActivityStatus);
 router.put('/activities/user/cancel', activitiesController.updateActivityIsCanceled);

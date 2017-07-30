@@ -6,7 +6,6 @@ import CategoryChart from './CategoryChart';
 import CircularProgressbar from 'react-circular-progressbar';
 import { getKey } from '../utils/constants';
 import './styles/Dashboard.css';
-import { NextButton } from '../elements';
 
 class Dashboard extends Component {
   constructor() {

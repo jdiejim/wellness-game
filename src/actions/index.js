@@ -26,7 +26,10 @@ import {
   SELECT_DASH_DATE,
   GET_LEADER_BOARDS,
   LEADER_BOARDS_ARE_LOADING,
-  LEADER_BOARDS_FAIL
+  LEADER_BOARDS_FAIL,
+  USER_MONTHLY_ACTIVITIES,
+  USER_MONTHLY_ACTIVITIES_ARE_LOADING,
+  USER_MONTHLY_ACTIVITIES_FAIL
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
@@ -258,6 +261,32 @@ export const fetchLeaderboards = (body) => {
     })
     .catch(err => {
       dispatch(leaderboardsFail(true));
+    });
+  }
+}
+
+export const getMonthlyActivities = (monthlyActivities) => ({ type: USER_MONTHLY_ACTIVITIES, monthlyActivities });
+export const monthlyActivitiesAreLoading = (bool) => ({ type: USER_MONTHLY_ACTIVITIES_ARE_LOADING, monthlyActivitiesLoading: bool });
+export const monthlyActivitiesFail = (bool) => ({ type: USER_MONTHLY_ACTIVITIES_FAIL, monthlyActivitiesFail: bool });
+
+export const fetchMonthlyActivities = (body) => {
+  return dispatch => {
+    dispatch(monthlyActivitiesAreLoading(true));
+    fetch('api/v1/activities/month', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      dispatch(monthlyActivitiesAreLoading(false));
+      return res.json();
+    })
+    .then(({ activities }) => {
+      dispatch(monthlyActivitiesFail(false));
+      dispatch(getMonthlyActivities(activities));
+    })
+    .catch(err => {
+      dispatch(monthlyActivitiesFail(true));
     });
   }
 }

@@ -21,7 +21,6 @@ class AddActivityView extends Component {
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.clearState = this.clearState.bind(this);
-    this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
   handleOnChange(e) {
@@ -32,7 +31,7 @@ class AddActivityView extends Component {
 
   handleOnSubmit(e) {
     e.preventDefault();
-    const { selectedDate: date, createActivities, user: { id: user_id } } = this.props;
+    const { selectedDate: date, createActivities, user: { id: user_id }, fetchMonthlyActivities } = this.props;
     const keys = Object.keys(this.state);
     const activities = keys.map(activity => ({
       user_id,
@@ -42,12 +41,8 @@ class AddActivityView extends Component {
     }));
 
     createActivities(activities);
-
+    fetchMonthlyActivities({ date, user_id })
     this.clearState();
-  }
-
-  handleSelectAll() {
-    console.log('hello');
   }
 
   clearState() {
@@ -61,9 +56,11 @@ class AddActivityView extends Component {
 
   render() {
     const { rest, nutrition, sweat, personal } = this.state;
-    const { selectedDate } = this.props;
+    const { selectedDate, monthlyActivities } = this.props;
     const day = moment(selectedDate).format('D');
     const dayOfWeek = moment(selectedDate).format('dddd');
+    const monthly = monthlyActivities.map(e => moment(e.date).format());
+    const formClass = monthly.find(f => f === moment(selectedDate).format()) ? 'add-activity-form-exists' : 'add-activity-form';
 
     return (
       <section className="add-activity-view">
@@ -73,7 +70,7 @@ class AddActivityView extends Component {
               <CalendarContainer />
             </section>
           </section>
-          <form className="add-activity-form" onSubmit={this.handleOnSubmit}>
+          <form className={formClass} onSubmit={this.handleOnSubmit}>
             <header className="add-form-header">
               <h1 className="add-form-date">{day}</h1>
               <p className="add-form-day">{dayOfWeek}</p>
@@ -117,11 +114,11 @@ class AddActivityView extends Component {
               </article>
             </section>
             <section className="add-btn-wrapper">
-              <AddSubmit
+              {/* <AddSubmit
                 onClick={this.handleSelectAll}
                 type="button"
                 value="Quick Week"
-              />
+              /> */}
               <AddSubmit
                 type="submit"
                 value="Submit"

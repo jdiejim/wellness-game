@@ -34,6 +34,14 @@ const indexUserWeeklyActivities = (req, res, next) => {
     .catch(error => res.status(500).json({ error }))
 }
 
+const indexUserMonthlyActivities = (req, res, next) => {
+  Activity.getMonthlyActivities(req.body)
+    .then(activities => {
+      res.status(200).json({ activities })
+    })
+    .catch(error => res.status(500).json({ error }))
+}
+
 const updateActivityStatus = (req, res, next) => {
   Activity.changeActivityStatus(req.body)
     .then(data => {
@@ -50,4 +58,4 @@ const updateActivityIsCanceled= (req, res, next) => {
     .catch(error => res.status(500).json({ error }))
 }
 
-module.exports = { create, indexByDate, indexWeeklyChallenge, indexUserWeeklyActivities, updateActivityStatus, updateActivityIsCanceled }
+module.exports = { create, indexByDate, indexWeeklyChallenge, indexUserWeeklyActivities, updateActivityStatus, updateActivityIsCanceled, indexUserMonthlyActivities }

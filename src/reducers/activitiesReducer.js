@@ -8,7 +8,10 @@ import {
   UPDATE_CANCEL_FAIL,
   GET_LEADER_BOARDS,
   LEADER_BOARDS_ARE_LOADING,
-  LEADER_BOARDS_FAIL
+  LEADER_BOARDS_FAIL,
+  USER_MONTHLY_ACTIVITIES,
+  USER_MONTHLY_ACTIVITIES_ARE_LOADING,
+  USER_MONTHLY_ACTIVITIES_FAIL
 } from '../utils/constants';
 
 export const activitiesReducer = (state=[], action) => {
@@ -89,6 +92,33 @@ export const leaderboardsFailReducer = (state=false, action) => {
   switch (action.type) {
     case LEADER_BOARDS_FAIL:
       return action.leaderboardsFail;
+    default:
+      return state;
+  }
+}
+
+export const monthlyActivitiesReducer = (state=[], action) => {
+  switch (action.type) {
+    case USER_MONTHLY_ACTIVITIES:
+      return action.monthlyActivities;
+    default:
+      return state;
+  }
+}
+
+export const monthlyActivitiesLoadingReducer = (state=false, action) => {
+  switch (action.type) {
+    case USER_MONTHLY_ACTIVITIES_ARE_LOADING:
+      return action.monthlyActivitiesLoading;
+    default:
+      return state;
+  }
+}
+
+export const monthlyActivitiesFailReducer = (state=false, action) => {
+  switch (action.type) {
+    case USER_MONTHLY_ACTIVITIES_FAIL:
+      return action.monthlyActivitiesFail;
     default:
       return state;
   }
