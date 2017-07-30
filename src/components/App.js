@@ -30,7 +30,7 @@ class App extends Component {
 
     return (
       <main className={appClassName}>
-        <SideBar className="side-bar" />
+        <SideBar className="side-bar" user={user} />
         <header className="main-header">
           <AddSubmit
             onClick={this.handleLogOut}

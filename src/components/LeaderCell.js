@@ -1,12 +1,15 @@
 import React from 'react';
 import { getCrown } from '../utils/helpers';
+import { Avatar } from '../elements';
 import './styles/LeaderCell.css';
 
 const LeaderCell = ({ leader, aggregate, index }) => {
   const { first_name, last_name, avatar, completed, total } = leader;
   const name = `${first_name} ${last_name}`;
+  const initials = `${first_name[0]}${last_name[0]}`;
   const progress = `${Math.round(completed / total * 100)}%`;
-  const barStyle = { width: progress };
+  const width = `${Math.round(completed / 28 * 100)}%`;
+  const barStyle = { width };
   const crownIcon = { backgroundImage: `url(${getCrown(index)})` }
   const crown = index < 3 ? <div style={crownIcon} className="crown"></div> : '';
 
@@ -14,7 +17,9 @@ const LeaderCell = ({ leader, aggregate, index }) => {
     <article className="leader-cell">
       <div className="leader-info-wrapper">
         {crown}
-        <div className="leader-avatar"></div>
+        <Avatar color={avatar} size={45} fontSize={1}>
+          {initials}
+        </Avatar>
         <h2 className="leader-name">{name}</h2>
         <div className="leader-chart">
           <div className="leader-bar" style={barStyle}></div>
