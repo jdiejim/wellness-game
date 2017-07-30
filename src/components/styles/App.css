@@ -25,7 +25,7 @@
 }
 
 .logout {
-  margin: 10px 50px;
+  margin: 10px 50px 10px 10px;
   animation: logOutAppear 0.2s;
 }
 

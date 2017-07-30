@@ -96,12 +96,13 @@ class Dashboard extends Component {
 
     return (
       <section className="dashboard">
-        <section className="charts-wrapper">
+        <section className="stats-wrapper">
           <section className="summary-wrapper">
+            <h2 className="weekly-title">Weekly Stats</h2>
 
             <div className="totals">
               <article className="totals-cell">
-                <p className="totals-cell-title">Pending</p>
+                <p className="totals-cell-title">On Progress</p>
                 <p className="totals-cell-value">{pending}</p>
               </article>
               <article className="totals-cell">
@@ -109,13 +110,13 @@ class Dashboard extends Component {
                 <p className="totals-cell-value">{completed}</p>
               </article>
               <article className="totals-cell">
-                <p className="totals-cell-title">Incompleted</p>
+                <p className="totals-cell-title">Overdue</p>
                 <p className="totals-cell-value">{incompleted}</p>
               </article>
             </div>
 
-            <div className="weekly-progress">
-              <h2 className="weekly-title">Weekly Progress</h2>
+            <div className="progress-pie">
+              <p className="progress-pie-title">Weekly Progress</p>
               <CircularProgressbar percentage={progress} initialAnimation={true} />
             </div>
 

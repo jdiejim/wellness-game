@@ -5,7 +5,7 @@ import DashboardContainer from '../containers/DashboardContainer';
 import AddActivityContainer from '../containers/AddActivityContainer';
 import LeaderboardsContainer from '../containers/LeaderboardsContainer';
 import { Route, Redirect } from 'react-router-dom';
-import { AddSubmit } from '../elements';
+import { AddSubmit, Avatar } from '../elements';
 
 class App extends Component {
   constructor() {
@@ -21,12 +21,15 @@ class App extends Component {
   }
 
   render() {
-    const { user, location: { pathname } } = this.props;
+    const { user, user: { first_name, last_name, avatar, id }, location: { pathname } } = this.props;
     const appClassName = pathname === '/login' || pathname === '/signup' ? 'App hidden' : 'App';
 
-    if (!user.id) {
+    if (!id) {
       return <Redirect to="/login" />
     }
+
+    const initials = `${first_name[0]}${last_name[0]}`
+    const name = `${first_name }${last_name }`
 
     return (
       <main className={appClassName}>
