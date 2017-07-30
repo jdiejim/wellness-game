@@ -6,13 +6,16 @@ import add from '../assets/add.svg';
 import loyalty from '../assets/loyalty.svg';
 import badge from '../assets/badge.svg';
 import profile from '../assets/profile.jpg';
-
 import './styles/SideBar.css';
 
-const SideBar = () => {
+const SideBar = ({ user: { first_name, last_name, avatar } }) => {
+  const name = `${first_name[0]}${last_name[0]}`;
+
   return (
     <Aside className="side-bar">
-      <Avatar id="avatar" src={profile} />
+      <Avatar id="avatar" color={avatar} size={80} fontSize={2}>
+        {name}
+      </Avatar>
       <SideNav>
         <IconTab
           to="/dashboard"

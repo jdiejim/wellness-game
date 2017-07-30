@@ -37,13 +37,13 @@ const rest = [
   'sleep +',
   'sleep at ',
   'sleep before ',
-  'take nap of ',
+  'take nap +',
   ]
 
 const getRandomRest = () => rest[getRandomBetween(0, rest.length - 1)];
 
 const sweat = [
-  'attend gym: ',
+  'attend gym qty: ',
   'run miles: ',
   'pushups reps: ',
   'abs reps: ',
@@ -157,10 +157,21 @@ const first = [
   'Beasly'
   ]
 
+const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+
 const hash = (password) => crypto.createHash('sha1').update(password).digest('base64');
 const getRandomLast = () => last[getRandomBetween(0, last.length - 1)];
 const getEmail = (first) => `${first.toLowerCase()}@email.com`;
-const getAvatar = (first) => `www.images/${first.toLowerCase()}.com`;
+const getAvatar = (first) => `${getRandomColor()}`;
 const users = first.map(e => ({
   first_name: e,
   last_name: getRandomLast(),

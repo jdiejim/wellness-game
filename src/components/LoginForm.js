@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getRandomColor } from '../utils/helpers';
 import { InputText, InputSubmit, LoginTitle, StyledLink } from '../elements';
 import './styles/LogInForm.css';
 
@@ -58,9 +59,10 @@ class LogInForm extends Component {
 
   handleSignUp() {
     const { first_name, last_name, email, password } = this.state;
+    const avatar = getRandomColor();
     const { signUp } = this.props;
 
-    signUp({ first_name, last_name, email, password });
+    signUp({ first_name, last_name, email, password, avatar });
   }
 
   render() {

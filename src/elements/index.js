@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 // import cancel from '../assets/cancel.svg';
 import { NavLink, Link } from 'react-router-dom';
-import { lighten } from 'polished';
+import { lighten, darken } from 'polished';
 
 export const palette = {
   primDark:    '#303F9F',
@@ -24,15 +24,20 @@ export const Aside = styled.aside`
 `;
 
 export const Avatar = styled.div`
-  width: 80px;
-  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${({ size }) => size + 'px' };
+  height: ${({ size }) => size + 'px' };
   margin: 0 auto;
-  background-color: ${palette.text};
+  background-color: ${({ color }) => color };
   background-image: url(${({ src })=> src });
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
+  color: #FFF;
+  font-size: ${({ fontSize }) => fontSize + 'em' };
 `;
 
 export const IconTab = styled(NavLink)`
