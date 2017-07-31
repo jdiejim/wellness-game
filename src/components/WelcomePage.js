@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
+import demo from '../assets/wellness_demo.gif';
 import LogInFormContainer from '../containers/LogInFormContainer';
-import { Banner } from '../elements';
 import './styles/WelcomePage.css';
 
 class WelcomePage extends Component {
   constructor() {
     super();
     this.state = {
-      anim: false
+      anim: false,
+
     }
     this.handleLogInSuccess = this.handleLogInSuccess.bind(this);
   }
@@ -35,17 +36,31 @@ class WelcomePage extends Component {
 
   render() {
     const { anim } = this.state;
+    const welcomeClass = anim ? 'welcome-container banner-anim' : 'welcome-container';
 
     return (
-      <section className="welcome-container">
+      <section className={welcomeClass}>
         <nav className="welcome-nav">
-          About
-          <Link to="/signup">signup</Link>
-          <Link to="/login">login</Link>
+          <NavLink activeClassName="tab-active" to="/about">How it works</NavLink>
+          <NavLink activeClassName="tab-active" to="/signup">Join Now</NavLink>
+          <NavLink activeClassName="tab-active" to="/login">Login</NavLink>
         </nav>
         <main className="welcome-main">
-          <Banner anim={anim} size={2} />
+          <section className="welcome-msg">
+            <h1 className="welcome-title">Wellness Game</h1>
+            <p className="welcome-body">This Web app lets users track their wellness activities each week. Users can easily add their daily activities for each of the 4 categories: rest, nutrition, sweat, and personal wellness
+</p>
+          </section>
+          <section className="banner">
+          </section>
           <section className="welcome-login-wrapper">
+            <Route path="/about" render={() => {
+              return (
+                <div className="demo-pic-wrapper">
+                  <img className="demo-pic" src={demo} />
+                </div>
+              )
+            }} />
             <Route path="/login" component={LogInFormContainer} />
             <Route path="/signup" component={LogInFormContainer} />
           </section>

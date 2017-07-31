@@ -15,6 +15,7 @@ render(
         <Route path="/" component={AppContainer} />
         <Route path="/login" component={WelcomePageContainer} />
         <Route path="/signup" component={WelcomePageContainer} />
+        <Route path="/about" component={WelcomePageContainer} />
       </section>
     </ConnectedRouter>
   </Provider>,
