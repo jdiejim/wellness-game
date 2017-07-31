@@ -16,6 +16,7 @@ class ActivityCell extends Component {
       isCompleted: false,
       isCanceled: false,
     }
+
     this.handleComplete = this.handleComplete.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
@@ -87,11 +88,13 @@ class ActivityCell extends Component {
         </div>
         <div className="cell-button-wrapper">
           <button
+            id="cancel-btn"
             className={cancelBtn}
             onClick={this.handleCancel}
             style={cancelBtnStyle}>
           </button>
           <button
+            id="success-btn"
             className={successClass}
             onClick={this.handleComplete}
             style={successBtnStyle}>
