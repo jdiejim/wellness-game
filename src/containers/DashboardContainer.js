@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import Dashboard from '../components/Dashboard';
 import {
-  fetchUsers,
   fetchWeeklyActivities,
   updateStatus,
   updateCancel
