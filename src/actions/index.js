@@ -41,7 +41,7 @@ export const userLogInSuccess = (bool) => ({ type: USER_LOGIN_SUCCESS, userSucce
 export const logInUser = (body) => {
   return dispatch => {
     dispatch(userIsLoading(true));
-    fetch('/api/v1/login', {
+    fetch('api/v1/login', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }
