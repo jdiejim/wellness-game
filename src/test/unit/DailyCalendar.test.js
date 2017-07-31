@@ -89,24 +89,6 @@ describe('DailyCalendar', () => {
     expect(wrapper.state()).toEqual(expected);
   });
 
-  it('should modify state when it mounts', () => {
-    const wrapper = mount(
-      <DailyCalendar
-        user={user}
-        dashDate={dashDate}
-        changeDashDate={changeDashDate}
-        fetchWeeklyActivities={fetchWeeklyActivities}
-      />
-    );
-
-    const mainExpected = moment().format('D');
-    const datesExpected = getDates(dashDate);
-    const mainResult = moment(wrapper.state('mainDate')).format('D')
-
-    expect(wrapper.state('dates')).toEqual(datesExpected);
-    expect(mainResult).toBe(mainExpected);
-  });
-
   it('should trigger changeDashDate function when it mounts', () => {
     const mockFn = jest.fn();
     const wrapper = mount(
