@@ -14,7 +14,7 @@ class Dashboard extends Component {
       activities: []
     }
 
-    this.getIncompleted = this.getIncompleted.bind(this);
+    this.getOverdue = this.getOverdue.bind(this);
     this.getChartData = this.getChartData.bind(this);
   }
 
@@ -60,12 +60,12 @@ class Dashboard extends Component {
     }))
   }
 
-  getIncompleted() {
-    const todayNum = +moment().format('D');
+  getOverdue() {
+    const todayNum = moment().subtract(1, 'days').format();
     const { userWeeklyActivities } = this.props;
 
     return userWeeklyActivities.reduce((t, e) => {
-      const date = +moment(e.date).format('D');
+      const date = moment(e.date).format();
       if (date < todayNum && !e.status) {
         t += 1;
       }
@@ -80,7 +80,7 @@ class Dashboard extends Component {
     const completed = userWeeklyActivities.filter(e => e.status === true).length;
     const pending = total - completed;
     const progress = total === 0 ? 0 : Math.round((completed / total) * 100);
-    const incompleted = this.getIncompleted();
+    const incompleted = this.getOverdue();
     const chartData = this.getChartData();
     const activitiesList = userWeeklyActivities.filter(f => moment(f.date).format('MMM DD') === moment(dashDate).format('MMM DD')).map(activity =>
       <ActivityCell

@@ -9,8 +9,8 @@ class WelcomePage extends Component {
     super();
     this.state = {
       anim: false,
-
     }
+
     this.handleLogInSuccess = this.handleLogInSuccess.bind(this);
   }
 
