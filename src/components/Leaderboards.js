@@ -14,7 +14,6 @@ class Leaderboards extends Component {
 
   render() {
     const { leaderboards } = this.props;
-    const total = leaderboards.reduce((t, l) => t += +l.completed, 0);
 
     if (!leaderboards.length) {
       return <div>loading</div>
@@ -25,7 +24,6 @@ class Leaderboards extends Component {
         index={i}
         key={getKey()}
         leader={leader}
-        aggregate={total}
       />)
 
     return (

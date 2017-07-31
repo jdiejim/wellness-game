@@ -19,8 +19,8 @@ class DailyCalendar extends Component {
   }
 
   componentDidMount() {
-    const { changeDashDate } = this.props;
-    const mainDate = moment().format();
+    const { changeDashDate, dashDate } = this.props;
+    const mainDate = moment(dashDate).format();
     const dates = this.getDates(mainDate);
 
     changeDashDate(mainDate)
@@ -76,7 +76,6 @@ class DailyCalendar extends Component {
 
       this.setState({ dates, mainDate });
     }
-
   }
 
   render() {
@@ -87,20 +86,20 @@ class DailyCalendar extends Component {
 
       if (e === null) {
         return (
-          <DashDay key={getKey()} main={false}></DashDay>
+          <DashDay className="dash-day" key={getKey()} main={false}></DashDay>
         )
       }
 
       if (e === mainDate) {
         return (
-          <DashDay key={getKey()} main={true}>
+          <DashDay id="main-dash-day" className="dash-day" key={getKey()} main={true}>
             <p>{text}</p>
             <h3>{date}</h3>
           </DashDay>
         )
       }
       return (
-        <DashDay key={getKey()} main={false}>
+        <DashDay className="dash-day" key={getKey()} main={false}>
           <h3>{date}</h3>
           <p>{text}</p>
         </DashDay>

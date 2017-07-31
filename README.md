@@ -1,57 +1,29 @@
 # Wellness Game
 
-## Task Completion Testing
+This Web app lets users track their wellness activities each week.
 
-#### STEP 1: Write out a list of the actions in your system:
+## Features
 
-* login
-* go to register
-* sign up
-* change activity status
-* change date of activities
-* go to add activities tab
-* choose date in calendar
-* add activities by date
+#### Adding activities
 
-| Tasks                             | Score |
-| :-------------------------------  | :---- |
-| Go to register                    |       |
-| Sign up                           |       |
-| Change activity status            |       |
-| Change dashboard date             |       |
-| Go to add activities tab          |       |
-| add activity                      |       |
-| change date on calendar           |       |
-| change month on calendar          |       |
-| add new activity on diff date     |       |
+* Users can easily add their daily activities for each of the 4 categories: rest, nutrition, sweat, and personal wellness
 
-#### STEP 2: Ask the user you’re working with to perform each (or a subset) of these actions:
+#### Dashboard
 
-#### STEP 3: Use the following designations:
-If the user can perform them quickly and with no trouble, mark it a 3.
-If the user can perform it but has some struggles, mark it a 2.
-If the user can’t perform it, mark it a 1.
+* The dashboard displays the user's weekly stats, as well as a progress chart, and a spark line chart for each of the four categories.
 
+* It also displays the user's current activities, which can be mark as complete or incomplete by clicking on the checkboxes.
 
-#### STEP 4: Ask 5 different users to perform these tasks, add up the numbers, and start working on the lowest scoring behaviors first. Those are the actions that have the worst usability:
+#### Leaderboards
 
-| User   | Score     |
-| :----- | :-------- |
-|        |           |
-|        |           |
-|        |           |
-|        |           |
-|        |           |
+* Users can also see a table which displays other users weekly stats, as wells as their rank each week.
 
+#### Future updates
 
-* add text to navs
-* add title to CategoryChart
-* add title to summary-wrapper
-* add foucs on button and tabs
-* dont clear inputs just on field tha tis wrong
-* calendar mark
-* calendar buttonClass
-* quick fill
-* add activity success message
-* description at home page
-* history - chart
+1. Accountability buddy: users can make other users accountable of their activities, and if they are overdue, both users lose points.
+
+2. Rewards: weekly winners are rewarded with the ability to put extra challenges to the whole group.
+
+3. Challenge of the week: this challenge would be weekly and will become available to all users
+
+4. Web sockets: this way we can create a real time database and users can send messages to each other.
