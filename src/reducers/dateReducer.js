@@ -1,4 +1,10 @@
-import { SELECT_DATE, CHANGE_MONTH, SELECT_MONTH, TODAY, SELECT_DASH_DATE } from '../utils/constants';
+import {
+  SELECT_DATE,
+  CHANGE_MONTH,
+  SELECT_MONTH,
+  TODAY,
+  SELECT_DASH_DATE
+} from '../utils/constants';
 import moment from 'moment';
 
 export const dateReducer = (state=moment().format(), action) => {

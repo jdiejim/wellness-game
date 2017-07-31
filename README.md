@@ -18,6 +18,11 @@ This Web app lets users track their wellness activities each week.
 
 * Users can also see a table which displays other users weekly stats, as wells as their rank each week.
 
+#### Screenshot
+
+![screenshot](./src/assets/wellness_demo.gif)
+
+
 #### Future updates
 
 1. Accountability buddy: users can make other users accountable of their activities, and if they are overdue, both users lose points.

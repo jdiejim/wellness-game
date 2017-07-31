@@ -19,10 +19,8 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const { fetchUsers, users, user, fetchWeeklyActivities } = this.props;
-    if (!users.length) {
-      fetchUsers();
-    }
+    const { user, fetchWeeklyActivities } = this.props;
+
     const date = moment().format();
 
     fetchWeeklyActivities({ date, user_id: user.id });

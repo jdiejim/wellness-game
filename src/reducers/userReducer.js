@@ -17,7 +17,6 @@ export const userReducer = (state={}, action) => {
     case SIGN_UP:
       return action.user;
     case LOG_OUT:
-    console.log('logout');
       return {};
     default:
       return state;
@@ -63,9 +62,9 @@ export const userWeeklyActivitiesReducer = (state=[], action) => {
 export const userWeeklyActivitiesLoadingReducer = (state=false, action) => {
   switch (action.type) {
     case USER_WEEKLY_ACTIVITIES_ARE_LOADING:
-    return action.userWeeklyActivitiesLoading;
+      return action.userWeeklyActivitiesLoading;
     default:
-    return state;
+      return state;
   }
 }
 

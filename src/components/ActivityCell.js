@@ -37,7 +37,7 @@ class ActivityCell extends Component {
   }
 
   handleCancel() {
-    const { isCanceled, isCompleted } = this.state;
+    const { isCanceled } = this.state;
     const { updateCancel, activity: { id, user_id, date } } = this.props;
 
     if (!isCanceled) {
@@ -50,8 +50,8 @@ class ActivityCell extends Component {
   }
 
   render() {
-    const { isCompleted, isCanceled, anim } = this.state;
-    const { type, description, status, date, id } = this.props.activity;
+    const { isCompleted, isCanceled } = this.state;
+    const { type, description } = this.props.activity;
     const icons = {
       rest: { icon: rest, color: '#3F51B5'},
       nutrition: { icon: nutrition, color: '#54b3a7'},

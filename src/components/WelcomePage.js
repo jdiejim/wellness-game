@@ -48,8 +48,7 @@ class WelcomePage extends Component {
         <main className="welcome-main">
           <section className="welcome-msg">
             <h1 className="welcome-title">Wellness Game</h1>
-            <p className="welcome-body">This Web app lets users track their wellness activities each week. Users can easily add their daily activities for each of the 4 categories: rest, nutrition, sweat, and personal wellness
-</p>
+            <p className="welcome-body">This Web app lets users track their wellness activities each week. Users can easily add their daily activities for each of the 4 categories: rest, nutrition, sweat, and personal wellness</p>
           </section>
           <section className="banner">
           </section>
@@ -57,7 +56,7 @@ class WelcomePage extends Component {
             <Route path="/about" render={() => {
               return (
                 <div className="demo-pic-wrapper">
-                  <img className="demo-pic" src={demo} />
+                  <img className="demo-pic" src={demo} alt="demo" />
                 </div>
               )
             }} />

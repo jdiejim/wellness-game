@@ -1,4 +1,9 @@
-import { GET_USERS, USERS_ARE_LOADING, USERS_FETCH_FAIL, USERS_FETCH_SUCCESS } from '../utils/constants';
+import {
+  GET_USERS,
+  USERS_ARE_LOADING,
+  USERS_FETCH_FAIL,
+  USERS_FETCH_SUCCESS 
+} from '../utils/constants';
 
 export const usersReducer = (state=[], action) => {
   switch (action.type) {

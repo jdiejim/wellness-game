@@ -17,26 +17,31 @@ const SideBar = ({ user: { first_name, last_name, avatar } }) => {
       </Avatar>
       <SideNav>
         <IconTab
+          className="side-nav-tab"
           to="/dashboard"
           activeClassName="tab-selected"
           icon={dashboard}
         />
         <IconTab
+          className="side-nav-tab"
           to="/activities"
           activeClassName="tab-selected"
           icon={add}
         />
         <IconTab
+          className="side-nav-tab"
           to="/leaderboards"
           activeClassName="tab-selected"
           icon={trophy}
         />
         <IconTab
+          className="side-nav-tab"
           to="/accountability"
           activeClassName="tab-selected"
           icon={loyalty}
         />
         <IconTab
+          className="side-nav-tab"
           to="/rewards"
           activeClassName="tab-selected"
           icon={badge}
