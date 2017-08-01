@@ -1,33 +1,3 @@
-@keyframes clicked-completed {
-  0% {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
-    transform: scale(1);
-  }
-  75% {
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 30px, rgba(0, 0, 0, 0.23) 0px 6px 10px;
-    transform: scale(1.3);
-  }
-  100% {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
-    transform: scale(1);
-  }
-}
-
-@keyframes clicked {
-  0% {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
-    transform: scale(1);
-  }
-  75% {
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 30px, rgba(0, 0, 0, 0.23) 0px 6px 10px;
-    transform: scale(1.3);
-  }
-  100% {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
-    transform: scale(1);
-  }
-}
-
 .list-item {
   display: flex;
   align-items: center;
@@ -42,13 +12,11 @@
   display: flex;
   align-items: center;
   width: 80%;
-  /*background-color: red;*/
 }
 
 .description {
   font-size: 25px;
   font-weight: lighter;
-  /*background-color: blue;*/
 }
 
 .item-canceled .description {
@@ -92,8 +60,6 @@
   font-size: 16px;
   font-weight: lighter;
   opacity: 0.4;
-  transition: all 0.2s;
-  animation: clicked 0.2s;
 }
 
 .activity-btn:hover {
@@ -120,13 +86,4 @@
   font-weight: lighter;
   transition: all 0.2s;
   opacity: 1;
-  animation: clicked-completed 0.2s;
 }
-/*
-.complete-animated .clicked {
-  animation: clicked-completed 0.2s;
-}
-
-.btn-animated .activity-btn {
-  animation: clicked 0.2s;
-}*/

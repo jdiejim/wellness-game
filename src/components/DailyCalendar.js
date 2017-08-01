@@ -55,7 +55,7 @@ class DailyCalendar extends Component {
     const min = moment(today).subtract(offset, 'days').format();
     const max = moment(today).add(7 - offset, 'days').format();
     const { id } = e.target;
-    const { dashDate, changeDashDate, fetchWeeklyActivities, user: { id: user_id } } = this.props;
+    const { dashDate, changeDashDate, user: { id: user_id } } = this.props;
     const newDate = moment(dashDate);
 
     switch (id) {
@@ -72,7 +72,6 @@ class DailyCalendar extends Component {
 
     if (mainDate >= min && mainDate <= max) {
       changeDashDate(mainDate);
-      fetchWeeklyActivities({ user_id, date: mainDate });
 
       this.setState({ dates, mainDate });
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import ActivityCell from './ActivityCell';
 import DailyCalendarContainer from '../containers/DailyCalendarContainer';
+import ActivitiesListContainer from '../containers/ActivitiesListContainer';
 import CategoryChart from './CategoryChart';
 import CircularProgressbar from 'react-circular-progressbar';
 import { getKey } from '../utils/constants';
@@ -120,12 +121,7 @@ class Dashboard extends Component {
           </section>
           <CategoryChart data={chartData} />
         </section>
-        <section className="activities-wrapper">
-          <DailyCalendarContainer />
-          <section className="activities-list">
-            {activitiesList}
-          </section>
-        </section>
+        <ActivitiesListContainer />
       </section>
     )
   }
