@@ -1,106 +1,56 @@
 import React, { Component } from 'react';
-import rest from '../assets/rest.svg';
-import nutrition from '../assets/nutrition.svg';
-import personal from '../assets/personal.svg';
-import sweat from '../assets/sweat.svg';
 import success from '../assets/success.svg';
 import successInactive from '../assets/success-inactive.svg';
 import error from '../assets/error.svg';
+import { getTypeIcon, getBgImage, toggleClass } from '../utils/helpers';
 import './styles/ActivityCell.css';
 
 class ActivityCell extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: '',
-      isCompleted: false,
-      isCanceled: false,
-    }
 
     this.handleComplete = this.handleComplete.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  componentDidMount() {
-    const { id, status: isCompleted, is_canceled: isCanceled } = this.props.activity;
-
-    this.setState({ id, isCompleted, isCanceled });
-  }
-
   handleComplete() {
-    const { isCanceled, isCompleted } = this.state;
-    const { updateStatus, activity: { id, user_id, date } } = this.props;
+    const { updateStatus, activity: { id, user_id, date, status, is_canceled } } = this.props;
 
-    if (!isCanceled) {
-      updateStatus({ id, status: !isCompleted }, { user_id, date });
-      this.setState({ isCompleted: !isCompleted });
+    if (!is_canceled) {
+      updateStatus({ id, status: !status }, { user_id, date });
     }
   }
 
   handleCancel() {
-    const { isCanceled } = this.state;
-    const { updateCancel, activity: { id, user_id, date } } = this.props;
+    const { updateCancel, activity: { id, user_id, date, is_canceled } } = this.props;
 
-    if (!isCanceled) {
-      this.setState({ isCanceled: !isCanceled, isCompleted: false });
-    } else {
-      this.setState({ isCanceled: !isCanceled });
-    }
-
-    updateCancel({ id, is_canceled: !isCanceled }, { user_id, date });
+    updateCancel({ id, is_canceled: !is_canceled }, { user_id, date });
   }
 
   render() {
-    const { isCompleted, isCanceled } = this.state;
-    const { type, description } = this.props.activity;
-    const icons = {
-      rest: { icon: rest, color: '#3F51B5'},
-      nutrition: { icon: nutrition, color: '#54b3a7'},
-      sweat: { icon: sweat, color: '#2b2b2b'},
-      personal: { icon: personal, color: '#f27474'}
-    };
-    const icon = {
-      backgroundImage: `url(${icons[type].icon})`,
-      backgroundColor: isCompleted ? icons[type].color : '#a29f9f'
-    };
-    const caceledIcon = {
-      backgroundImage: `url(${icons[type].icon})`,
-      backgroundColor: '#DBDBDB'
-    };
-    const typeIcon = isCanceled ? caceledIcon : icon;
-    const listClass = isCanceled ? 'list-item item-canceled' : 'list-item'
-    const successClass = isCompleted ? 'clicked' : 'activity-btn';
-    const successIcon = isCanceled ? successInactive : success;
-    const successBtnStyle = {
-      backgroundImage: `url(${successIcon})`,
-    };
-    const cancelBtn = isCanceled ? 'clicked' : 'activity-btn';
-    const cancelBtnStyle = {
-      backgroundImage: `url(${error})`,
-    };
-
+    const { type, description, status, is_canceled } = this.props.activity;
 
     return (
-      <section className={listClass}>
+      <article className={`list-item ${toggleClass(is_canceled, 'item-canceled')}`}>
         <div className="info-separator">
-          <div className="activity-type" style={typeIcon}></div>
+          <div className="activity-type" style={getTypeIcon(type, status, is_canceled)}></div>
           <h2 className="description">{description}</h2>
         </div>
         <div className="cell-button-wrapper">
           <button
             id="cancel-btn"
-            className={cancelBtn}
+            className={toggleClass(is_canceled, 'clicked', 'activity-btn')}
             onClick={this.handleCancel}
-            style={cancelBtnStyle}>
+            style={getBgImage(error)}>
           </button>
           <button
             id="success-btn"
-            className={successClass}
+            className={toggleClass(status, 'clicked', 'activity-btn')}
             onClick={this.handleComplete}
-            style={successBtnStyle}>
+            style={getBgImage(is_canceled ? successInactive : success)}>
           </button>
         </div>
-      </section>
+      </article>
     )
   }
 }
