@@ -1,0 +1,90 @@
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  height: 25%;
+  border: none;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.info-separator {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.description {
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+.item-canceled .description {
+  color: #DBDBDB;
+  text-decoration: line-through;
+}
+
+.accountability-type {
+  width: 65px;
+  height: 65px;
+  margin-right: 20px;
+  /*border: 1px solid #FFF;*/
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 65%;
+  border-radius: 50%;
+  /*opacity: 0.8;*/
+}
+
+.cell-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activity-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  margin-right: 20px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+  color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: lighter;
+  opacity: 0.4;
+}
+
+.activity-btn:hover {
+  opacity: 0.6;
+}
+
+.clicked {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  margin-right: 20px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+  color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: lighter;
+  transition: all 0.2s;
+  opacity: 1;
+}

@@ -40,12 +40,12 @@ const SideBar = ({ user: { first_name, last_name, avatar } }) => {
           activeClassName="tab-selected"
           icon={loyalty}
         />
-        <IconTab
+        {/* <IconTab
           className="side-nav-tab"
           to="/rewards"
           activeClassName="tab-selected"
           icon={badge}
-        />
+        /> */}
       </SideNav>
     </Aside>
   );

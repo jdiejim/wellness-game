@@ -42,6 +42,7 @@ export const Avatar = styled.div`
 export const IconTab = styled(NavLink)`
   width: 100%;
   height: 90px;
+  margin: 20px 0;
   background-image: url(${({ icon })=> icon });
   background-position: center;
   background-repeat: no-repeat;

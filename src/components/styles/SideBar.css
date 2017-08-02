@@ -2,3 +2,7 @@
  background-color: #C5CAE9;
  opacity: 1;
 }
+
+.side-bar > * {
+  /*margin: 20px 0;*/
+}
