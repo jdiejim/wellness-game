@@ -1,27 +1,11 @@
 import { connect } from 'react-redux';
 import Dashboard from '../components/Dashboard';
-import {
-  fetchWeeklyActivities,
-  updateStatus,
-  updateCancel
-} from '../actions';
+import { fetchWeeklyActivities } from '../actions';
 
-const mapStateToProps = ({
-  selectedDate,
-  user,
-  userWeeklyActivities,
-  dashDate
-}) => ({
-  selectedDate,
-  user,
-  userWeeklyActivities,
-  dashDate
-});
+const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchWeeklyActivities: (body) => dispatch(fetchWeeklyActivities(body)),
-  updateStatus: (body, weekBody) => dispatch(updateStatus(body, weekBody)),
-  updateCancel: (body, weekBody) => dispatch(updateCancel(body, weekBody)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

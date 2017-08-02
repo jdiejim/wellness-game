@@ -5,6 +5,7 @@ import sweat from '../assets/sweat.svg';
 import gold from '../assets/gold.svg';
 import silver from '../assets/silver.svg';
 import bronze from '../assets/bronze.svg';
+import moment from 'moment';
 
 export const getCrown = (num) => {
   switch (num) {
@@ -63,8 +64,61 @@ export const getTypeIcon = (type, status, is_canceled) => {
     backgroundImage: `url(${icons[type].icon})`,
     backgroundColor: status ? icons[type].color : '#a29f9f'
   }
+}
 
+export const getBarLabelStyle = (type) => {
+  return {
+    backgroundImage: `url(${icons[type].icon})`,
+    backgroundColor: icons[type].color,
+  }
+}
+
+export const getBarStyle = (type, width) => {
+  return {
+    backgroundColor: icons[type].color,
+    width
+  }
 }
 
 export const getBgImage = (icon) => ({ backgroundImage: `url(${icon})` });
+
 export const toggleClass = (bool, class1, class2='') => bool  ? class1 : class2;
+
+const getOverdue = (array) => {
+  const today = moment().subtract(1, 'days').format();
+
+  return array.filter(e => moment(e.date).format() < today && !e.status).length;
+}
+
+const getCompleted = (array) => array.filter(e => e.status === true).length;
+
+export const getStats = (array) => ({
+  total: array.length,
+  pending: array.length - getCompleted(array),
+  completed: getCompleted(array),
+  overdue: getOverdue(array),
+});
+
+export const getStatsByType = (array) => array.reduce((obj, e) => {
+  if (!obj[e.type]) {
+    obj[e.type] = { length: 0, completed: 0 }
+  }
+  if (e.status) {
+    obj[e.type].completed++;
+  }
+  obj[e.type].length++;
+
+  return obj
+}, {});
+
+export const addProgress = (stats) => {
+  Object.keys(stats).forEach(key => {
+    stats[key].progress = Math.round(stats[key].completed / stats[key].length * 100)
+  });
+
+  return stats;
+}
+
+export const getProgressByType = (array, action) => {
+  return addProgress(getStatsByType(array))
+}

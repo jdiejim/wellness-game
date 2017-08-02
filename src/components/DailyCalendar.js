@@ -55,7 +55,7 @@ class DailyCalendar extends Component {
     const min = moment(today).subtract(offset, 'days').format();
     const max = moment(today).add(7 - offset, 'days').format();
     const { id } = e.target;
-    const { dashDate, changeDashDate, user: { id: user_id } } = this.props;
+    const { dashDate, changeDashDate } = this.props;
     const newDate = moment(dashDate);
 
     switch (id) {
@@ -92,8 +92,8 @@ class DailyCalendar extends Component {
       if (e === mainDate) {
         return (
           <DashDay id="main-dash-day" className="dash-day" key={getKey()} main={true}>
-            <p>{text}</p>
             <h3>{date}</h3>
+            <p>{text}</p>
           </DashDay>
         )
       }

@@ -1,0 +1,35 @@
+.bar-wrapper {
+  display: flex;
+  width: 80%;
+  height: 40px;
+  margin: 0 auto;
+  background-color: #DBDBDB;
+  border-radius: 20px;
+}
+
+.bar-label {
+  width: 40px;
+  height: 40px;
+  background-position: 80% 50%;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: all 0.7s;
+}
+
+.bar-value {
+  margin-right: 10px;
+  color: #FFF;
+  font-weight: lighter;
+}

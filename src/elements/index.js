@@ -269,7 +269,7 @@ export const DashDay = styled.div`
   opacity: ${({ main }) => main ? 1 : 0.8 };
   transition: all 1s;
   h3 {
-    font-size: ${({ main }) => main ? '30px' : '16px' };
+    font-size: ${({ main }) => main ? '20px' : '16px' };
     font-weight: ${({ main }) => main ? 'normal' : 'lighter' };
   }
   p {
