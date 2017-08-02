@@ -3,6 +3,7 @@ import moment from 'moment';
 import SideBar from './SideBar';
 import DashboardContainer from '../containers/DashboardContainer';
 import AddActivityContainer from '../containers/AddActivityContainer';
+import AccountabilityContainer from '../containers/AccountabilityContainer';
 import LeaderboardsContainer from '../containers/LeaderboardsContainer';
 import { Route, Redirect } from 'react-router-dom';
 import { AddSubmit } from '../elements';
@@ -50,6 +51,7 @@ class App extends Component {
         <Route path="/dashboard" component={DashboardContainer} />
         <Route path="/activities" component={AddActivityContainer} />
         <Route path="/leaderboards" component={LeaderboardsContainer} />
+        <Route path="/accountability" component={AccountabilityContainer} />
       </main>
     );
   }
