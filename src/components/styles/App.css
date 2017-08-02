@@ -19,6 +19,7 @@
 .main-header {
   position: fixed;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   width: 100%;
   z-index: 2000;
@@ -29,6 +30,132 @@
   animation: logOutAppear 0.2s;
 }
 
-.side-bar {
-  animation: sideBarAppear 0.2s;
+.menu-icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: all 0.5s;
+  display: none;
+}
+
+.menu-icon:hover {
+  transform: scale(1.05);
+}
+
+.side-bar-active .menu-icon {
+  margin-left: 110px;
+}
+
+@media screen and (max-width: 1150px) {
+  .dashboard {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  .activities-wrapper {
+    width: 80%;
+    min-width: 430px;
+  }
+
+  .stats-wrapper {
+    order: 1;
+    margin: 50px 0;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .side-bar {
+    transform: translateX(-100%);
+  }
+
+  .dashboard {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 70px 0;
+    overflow: hidden;
+  }
+
+  .main-header {
+    justify-content: space-between;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .dashboard-calendar h3 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .dashboard-calendar  {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+ .activities-list {
+   width: 85%;
+   margin: 0 auto;
+ }
+
+ .description {
+   font-size: 16px;
+ }
+
+ .weekly-title  {
+   font-size: 30px;
+ }
+
+ .summary-wrapper {
+   width: 85%;
+   height: 180px;
+   margin: 0 auto;
+   padding: 0 20px;
+ }
+
+ .totals-cell-title {
+   font-size: 16px;
+ }
+
+ .chart-summary-wrapper {
+   width: 85%;
+   margin: 0 auto;
+ }
+
+ .chart-title {
+   padding: 10px 20px;
+   font-size: 30px;
+ }
+
+ .chart-summary {
+
+ }
+}
+
+@media screen and (max-width: 330px) {
+  .dashboard-calendar  {
+    width: 82%;
+  }
+
+  .dashboard-calendar h3 {
+    font-size: 12px;
+  }
+
+  .dashboard-calendar p {
+    font-size: 10px;
+  }
+
+ .activities-list {
+   width: 75%;
+ }
+
+ .description {
+   font-size: 12px;
+ }
 }

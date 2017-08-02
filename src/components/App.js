@@ -7,12 +7,19 @@ import AccountabilityContainer from '../containers/AccountabilityContainer';
 import LeaderboardsContainer from '../containers/LeaderboardsContainer';
 import { Route, Redirect } from 'react-router-dom';
 import { AddSubmit } from '../elements';
+import { toggleClass } from '../utils/helpers';
+import menu from '../assets/menu.svg';
 import './styles/App.css';
 
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+      showMenu: false
+    }
+
     this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleShowMenu = this.handleShowMenu.bind(this);
   }
 
   componentDidMount() {
@@ -28,18 +35,31 @@ class App extends Component {
     history.push('/login')
   }
 
+  handleShowMenu() {
+    console.log('hello');
+    this.setState({ showMenu: !this.state.showMenu });
+  }
+
   render() {
+    const { showMenu } = this.state;
     const { user, location: { pathname } } = this.props;
     const appClassName = pathname === '/login' || pathname === '/signup' ? 'App hidden' : 'App';
+    const menuIcon = { backgroundImage: `url(${menu})` };
+    const sideBarClass = toggleClass(showMenu, '', ' side-bar-active');
+    console.log(sideBarClass);
 
     if (!user.id) {
       return <Redirect to="/about" />
     }
 
     return (
-      <main className={appClassName}>
-        <SideBar className="side-bar" user={user} />
+      <main className={appClassName + sideBarClass}>
+        <SideBar className={sideBarClass} user={user} />
         <header className="main-header">
+          <div
+            onClick={this.handleShowMenu}
+            className="menu-icon"
+            style={menuIcon}></div>
           <AddSubmit
             onClick={this.handleLogOut}
             className="logout"

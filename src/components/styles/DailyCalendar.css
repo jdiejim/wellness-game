@@ -9,6 +9,7 @@
   /*background-color: yellow;*/
   background-color: #FFF;
   z-index: 1000;
+  transition: all 0.5s;
 }
 
 .dash-days-list {
