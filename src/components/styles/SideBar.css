@@ -1,8 +1,18 @@
+.side-bar {
+  transition: all 0.5s;
+  z-index: 9999;
+  animation: sideBarAppear 0.2s;
+  /*transform: translateX(-100%);*/
+}
+
+.side-bar-active .side-bar {
+  transition: all 0.5s;
+  z-index: 9999;
+  animation: sideBarAppear 0.2s;
+  transform: translateX(0%);
+}
+
 .tab-selected {
  background-color: #C5CAE9;
  opacity: 1;
-}
-
-.side-bar > * {
-  /*margin: 20px 0;*/
 }

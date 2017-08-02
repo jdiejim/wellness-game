@@ -6,6 +6,7 @@
   height: 25%;
   border: none;
   border-bottom: 1px solid #BDBDBD;
+  transition: all 0.5s;
 }
 
 .info-separator {
@@ -17,6 +18,7 @@
 .description {
   font-size: 25px;
   font-weight: lighter;
+  transition: all 0.5s;
 }
 
 .item-canceled .description {
