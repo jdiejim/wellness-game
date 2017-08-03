@@ -33,5 +33,6 @@ export const SELECT_BUDDY = 'SELECT_BUDDY';
 export const CLEAR_BUDDY = 'CLEAR_BUDDY';
 export const SELECT_ACTIVITY = 'SELECT_ACTIVITY';
 export const CLEAR_ACTIVITY = 'CLEAR_ACTIVITY';
+export const UPDATE_BUDDY_FAIL = 'UPDATE_BUDDY_FAIL';
 
 export const getKey = () => Math.round(Math.random() * Date.now());

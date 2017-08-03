@@ -6,12 +6,15 @@ exports.up = function(knex, Promise) {
       table.integer('user_id').unsigned();
       table.foreign('user_id').references('users.id');
       table.string('description');
-      table.enu('type', ['rest', 'sweat', 'nutrition', 'personal', 'wildcard']);
+      table.enu('type', ['rest', 'sweat', 'nutrition', 'personal', 'buddy']);
       table.boolean('status').defaultTo(false);
       table.boolean('is_canceled').defaultTo(false);
       table.integer('points').defaultTo(5);
       table.date('date');
-      table.timestamps(true, true);
+      table.integer('buddy_id');
+      table.string('buddy_avatar');
+      table.string('buddy_initials');
+      table.integer('buddy_ref');
     })
   ])
 };

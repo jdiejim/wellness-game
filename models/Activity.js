@@ -14,6 +14,10 @@ const createActivity = (activities) => {
   return Promise.all(promises);
 }
 
+const createActivityBuddy = (activity) => {
+  return db('activities').insert(activity, ['user_id', 'description', 'type', 'points', 'status', 'date']);
+}
+
 const getWeeklyLeaders = ({ date }) => {
   const offset = moment(date).isoWeekday();
   const start = moment(date).subtract(offset - 1, 'days').format();
@@ -36,7 +40,7 @@ const getWeeklyActivities = ({ date, user_id }) => {
   return db('activities').whereBetween('date', [start, end])
                          .andWhere({ user_id })
                          .orderBy('id', 'asc')
-                         .select('user_id', 'activities.id', 'description', 'type', 'status', 'is_canceled', 'date');
+                         .select('user_id', 'activities.id', 'description', 'type', 'status', 'is_canceled', 'date', 'buddy_id', 'buddy_avatar', 'buddy_initials');
 }
 
 const getMonthlyActivities = ({ date, user_id }) => {
@@ -54,7 +58,6 @@ const getMonthlyActivities = ({ date, user_id }) => {
 const changeActivityStatus = ({ id, status }) => {
   return db('activities').where({ id })
                          .update({ status }, ['*'])
-
 }
 
 const changeCancelActivity = ({ id, is_canceled }) => {
@@ -69,4 +72,9 @@ const changeCancelActivity = ({ id, is_canceled }) => {
                          .update({ is_canceled }, ['*'])
 }
 
-module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyActivities, changeActivityStatus, changeCancelActivity, getMonthlyActivities };
+const changeActivityBuddy = ({ id, buddy_id, buddy_avatar, buddy_initials }) => {
+  return db('activities').where({ id })
+                         .update({ buddy_id, buddy_avatar, buddy_initials }, ['*'])
+}
+
+module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyActivities, changeActivityStatus, changeCancelActivity, getMonthlyActivities, changeActivityBuddy, createActivityBuddy };

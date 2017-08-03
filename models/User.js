@@ -13,8 +13,7 @@ const getUser = ({ email, password: raw }) => {
 }
 
 const getUsers = () => {
-
-  return db('users').select();
+  return db('users').select('id', 'first_name', 'last_name', 'email', 'avatar');
 }
 
 const createUser = (body) => {

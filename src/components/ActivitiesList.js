@@ -7,7 +7,7 @@ import './styles/ActivitiesList.css';
 
 const ActivitiesList = ({ userWeeklyActivities, dashDate, updateStatus, updateCancel }) => {
   const activities = userWeeklyActivities
-    .filter(d => moment(d.date).format('MMM DD') === moment(dashDate).format('MMM DD'))
+    .filter(d => moment(d.date).format('MMM DD') === moment(dashDate).format('MMM DD') && d.type !== 'buddy')
     .map(activity =>
       <ActivityCell
         key={getKey()}

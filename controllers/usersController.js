@@ -12,8 +12,8 @@ const create = (req, res, next) => {
 
 const index = (req, res, next) => {
   User.getUsers()
-    .then(data => {
-      const users = data.map(user => User.userTemplate(user));
+    .then(users => {
+      // const users = data.map(user => User.userTemplate(user));
 
       res.status(200).json({ users });
     })

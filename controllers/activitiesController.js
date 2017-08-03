@@ -10,6 +10,15 @@ const create = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 }
 
+const createBuddy = (req, res, next) => {
+  Activity.createActivityBuddy(req.body)
+    .then(activity => {
+
+      res.status(200).json({ activity });
+    })
+    .catch(error => res.status(500).json({ error }));
+}
+
 const indexByDate = (req, res, next) => {
   Activity.getUserActivitiesByDate(req.body)
     .then(activities => {
@@ -50,7 +59,7 @@ const updateActivityStatus = (req, res, next) => {
     .catch(error => res.status(500).json({ error }))
 }
 
-const updateActivityIsCanceled= (req, res, next) => {
+const updateActivityIsCanceled = (req, res, next) => {
   Activity.changeCancelActivity(req.body)
     .then(data => {
       res.status(200).json({ data })
@@ -58,4 +67,12 @@ const updateActivityIsCanceled= (req, res, next) => {
     .catch(error => res.status(500).json({ error }))
 }
 
-module.exports = { create, indexByDate, indexWeeklyChallenge, indexUserWeeklyActivities, updateActivityStatus, updateActivityIsCanceled, indexUserMonthlyActivities }
+const updateActivityBuddy = (req, res, next) => {
+  Activity.changeActivityBuddy(req.body)
+    .then(data => {
+      res.status(200).json({ data })
+    })
+    .catch(error => res.status(500).json({ error }))
+}
+
+module.exports = { create, indexByDate, indexWeeklyChallenge, indexUserWeeklyActivities, updateActivityStatus, updateActivityIsCanceled, indexUserMonthlyActivities, updateActivityBuddy, createBuddy }

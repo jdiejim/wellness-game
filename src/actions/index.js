@@ -33,7 +33,8 @@ import {
   SELECT_BUDDY,
   CLEAR_BUDDY,
   SELECT_ACTIVITY,
-  CLEAR_ACTIVITY
+  CLEAR_ACTIVITY,
+  UPDATE_BUDDY_FAIL
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
@@ -299,3 +300,40 @@ export const selectBuddy = (buddy) => ({ type: SELECT_BUDDY, buddy });
 export const clearBuddy = () => ({ type: CLEAR_BUDDY });
 export const selectActivity = (activity) => ({ type: SELECT_ACTIVITY, activity });
 export const clearActivity = () => ({ type: CLEAR_ACTIVITY });
+
+export const updateBuddyFail = (bool) => ({ type: UPDATE_BUDDY_FAIL, updateBuddy: bool })
+
+export const updateBuddy = (body, weekBody, addBody) => {
+  return dispatch => {
+    fetch('api/v1/activities/user/buddy', {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      dispatch(updateBuddyFail(false));
+      dispatch(createActivityBuddy(addBody, weekBody))
+      // dispatch(fetchWeeklyActivities(weekBody))
+      return res.json();
+    })
+    .catch(err => {
+      dispatch(updateBuddyFail(true));
+    });
+  }
+}
+
+export const createActivityBuddy = (body, weekBody) => {
+  return dispatch => {
+    fetch('api/v1/activities/buddy', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      return res.json();
+    })
+    .then(res => {
+      dispatch(fetchWeeklyActivities(weekBody));
+    })
+  }
+}

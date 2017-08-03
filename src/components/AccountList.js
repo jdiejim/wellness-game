@@ -20,12 +20,22 @@ class AccountList extends Component {
   }
 
   handleClick() {
+    const { updateBuddy, activity, buddy: { id: buddy_id, first_name, last_name, avatar: buddy_avatar }, user: { id: user_id } } = this.props;
+    const buddy_initials = `${first_name[0]}${last_name[0]}`;
+    const date = moment().format();
+    const newActivity = {
+      user_id: buddy_id,
+      description: activity.description,
+      type: 'buddy',
+      date
+    };
 
+    updateBuddy({ id: activity.id, buddy_id, buddy_initials, buddy_avatar }, { user_id, date }, newActivity);
   }
 
   render() {
-    const { userWeeklyActivities, dashDate, users, selectBuddy, buddy, activity: selectedActivity, selectActivity } = this.props;
-    const activities = userWeeklyActivities.filter(e => !e.is_canceled)
+    const { userWeeklyActivities, users, selectBuddy, buddy, activity: selectedActivity, selectActivity, user: { id } } = this.props;
+    const activities = userWeeklyActivities.filter(e => !e.is_canceled && e.type !== 'buddy')
       .map(activity =>
         <AccountabilityCell
           key={getKey()}
@@ -35,7 +45,7 @@ class AccountList extends Component {
         />
       );
 
-    const mappedUsers = users.map(user =>
+    const mappedUsers = users.filter(e => e.id !== id).map(user =>
       <UserCell
         buddy={buddy}
         selectBuddy={selectBuddy}
