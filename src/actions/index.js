@@ -323,7 +323,6 @@ export const updateBuddy = (body, weekBody, addBody) => {
 }
 
 export const createActivityBuddy = (body, weekBody) => {
-  console.log(body);
   return dispatch => {
     fetch('api/v1/activities/buddy', {
       method: 'POST',

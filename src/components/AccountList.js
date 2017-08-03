@@ -23,7 +23,6 @@ class AccountList extends Component {
     const { updateBuddy, activity, buddy: { id: buddy_id, first_name, last_name, avatar: buddy_avatar }, user: { id: user_id } } = this.props;
     const buddy_initials = `${first_name[0]}${last_name[0]}`;
     const date = moment().format();
-    console.log(buddy_id);
     const newActivity = {
       user_id: buddy_id,
       description: activity.description,

@@ -14,6 +14,7 @@ exports.up = function(knex, Promise) {
       table.integer('buddy_id');
       table.string('buddy_avatar');
       table.string('buddy_initials');
+      table.integer('buddy_ref');
     })
   ])
 };
