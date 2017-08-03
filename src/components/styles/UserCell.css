@@ -26,5 +26,17 @@
 }
 
 .user-cell-active {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  height: 60px;
+  margin: 10px auto;
+  padding: 35px 0;
   background-color: #C5CAE9;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.users-list-title {
+
 }

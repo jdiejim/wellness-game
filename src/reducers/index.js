@@ -13,7 +13,8 @@ import {
   userLogInSuccessReducer,
   userWeeklyActivitiesReducer,
   userWeeklyActivitiesLoadingReducer,
-  userWeeklyActivitiesFailReducer
+  userWeeklyActivitiesFailReducer,
+  buddyReducer
 } from './userReducer';
 import {
   usersReducer,
@@ -33,7 +34,8 @@ import {
   leaderboardsFailReducer,
   monthlyActivitiesReducer,
   monthlyActivitiesLoadingReducer,
-  monthlyActivitiesFailReducer
+  monthlyActivitiesFailReducer,
+  activityReducer
 } from './activitiesReducer';
 
 export default combineReducers({
@@ -64,5 +66,7 @@ export default combineReducers({
   selectedDate: dateReducer,
   selectedMonth: monthReducer,
   daysList: daysListReducer,
-  dashDate: dashDateReducer
+  dashDate: dashDateReducer,
+  buddy: buddyReducer,
+  activity: activityReducer
 })

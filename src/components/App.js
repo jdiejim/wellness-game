@@ -15,7 +15,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      showMenu: false
+      showMenu: true
     }
 
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -36,7 +36,6 @@ class App extends Component {
   }
 
   handleShowMenu() {
-    console.log('hello');
     this.setState({ showMenu: !this.state.showMenu });
   }
 
@@ -46,7 +45,6 @@ class App extends Component {
     const appClassName = pathname === '/login' || pathname === '/signup' ? 'App hidden' : 'App';
     const menuIcon = { backgroundImage: `url(${menu})` };
     const sideBarClass = toggleClass(showMenu, '', ' side-bar-active');
-    console.log(sideBarClass);
 
     if (!user.id) {
       return <Redirect to="/about" />

@@ -7,7 +7,9 @@ import {
   USER_LOGIN_SUCCESS,
   USER_WEEKLY_ACTIVITIES,
   USER_WEEKLY_ACTIVITIES_ARE_LOADING,
-  USER_WEEKLY_ACTIVITIES_FAIL
+  USER_WEEKLY_ACTIVITIES_FAIL,
+  SELECT_BUDDY,
+  CLEAR_BUDDY
 } from '../utils/constants';
 
 export const userReducer = (state={}, action) => {
@@ -72,6 +74,17 @@ export const userWeeklyActivitiesFailReducer = (state=false, action) => {
   switch (action.type) {
     case USER_WEEKLY_ACTIVITIES_FAIL:
       return action.userWeeklyActivitiesFail;
+    default:
+      return state;
+  }
+}
+
+export const buddyReducer = (state={}, action) => {
+  switch (action.type) {
+    case SELECT_BUDDY:
+      return action.buddy;
+    case CLEAR_BUDDY:
+      return {};
     default:
       return state;
   }

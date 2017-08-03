@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
-import { updateStatus, updateCancel } from '../actions';
+import { selectBuddy, clearBuddy, selectActivity, clearActivity } from '../actions';
 import AccountList from '../components/AccountList';
 
-const mapStateToProps = ({ userWeeklyActivities, dashDate, user, users }) => ({ userWeeklyActivities, dashDate, user, users });
+const mapStateToProps = ({ userWeeklyActivities, dashDate, user, users, buddy, activity }) => ({ userWeeklyActivities, dashDate, user, users, buddy, activity });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateStatus: (body, weekBody) => dispatch(updateStatus(body, weekBody)),
-  updateCancel: (body, weekBody) => dispatch(updateCancel(body, weekBody))
+  selectBuddy: (buddy) => dispatch(selectBuddy(buddy)),
+  clearBuddy: () => dispatch(clearBuddy()),
+  selectActivity: (activity) => dispatch(selectActivity(activity)),
+  clearActivity: () => dispatch(clearActivity()),
 })
 
-export default connect(mapStateToProps, null)(AccountList);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountList);

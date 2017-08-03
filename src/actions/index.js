@@ -29,7 +29,11 @@ import {
   LEADER_BOARDS_FAIL,
   USER_MONTHLY_ACTIVITIES,
   USER_MONTHLY_ACTIVITIES_ARE_LOADING,
-  USER_MONTHLY_ACTIVITIES_FAIL
+  USER_MONTHLY_ACTIVITIES_FAIL,
+  SELECT_BUDDY,
+  CLEAR_BUDDY,
+  SELECT_ACTIVITY,
+  CLEAR_ACTIVITY
 } from '../utils/constants';
 
 export const logIn = (user) => ({ type: LOG_IN, user });
@@ -290,3 +294,8 @@ export const fetchMonthlyActivities = (body) => {
     });
   }
 }
+
+export const selectBuddy = (buddy) => ({ type: SELECT_BUDDY, buddy });
+export const clearBuddy = () => ({ type: CLEAR_BUDDY });
+export const selectActivity = (activity) => ({ type: SELECT_ACTIVITY, activity });
+export const clearActivity = () => ({ type: CLEAR_ACTIVITY });

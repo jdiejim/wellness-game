@@ -11,7 +11,9 @@ import {
   LEADER_BOARDS_FAIL,
   USER_MONTHLY_ACTIVITIES,
   USER_MONTHLY_ACTIVITIES_ARE_LOADING,
-  USER_MONTHLY_ACTIVITIES_FAIL
+  USER_MONTHLY_ACTIVITIES_FAIL,
+  SELECT_ACTIVITY,
+  CLEAR_ACTIVITY
 } from '../utils/constants';
 
 export const activitiesReducer = (state=[], action) => {
@@ -119,6 +121,18 @@ export const monthlyActivitiesFailReducer = (state=false, action) => {
   switch (action.type) {
     case USER_MONTHLY_ACTIVITIES_FAIL:
       return action.monthlyActivitiesFail;
+    default:
+      return state;
+  }
+}
+
+
+export const activityReducer = (state={}, action) => {
+  switch (action.type) {
+    case SELECT_ACTIVITY:
+      return action.activity;
+    case CLEAR_ACTIVITY:
+      return {};
     default:
       return state;
   }
