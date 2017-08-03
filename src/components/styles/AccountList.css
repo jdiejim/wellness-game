@@ -85,14 +85,6 @@
   color: #DBDBDB;
 }
 
-.stepper-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
 .accountability-tables {
   display: flex;
   justify-content: space-between;
