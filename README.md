@@ -25,10 +25,8 @@ This Web app lets users track their wellness activities each week.
 
 #### Future updates
 
-1. Accountability buddy: users can make other users accountable of their activities, and if they are overdue, both users lose points.
+* Rewards: weekly winners are rewarded with the ability to put extra challenges to the whole group.
 
-2. Rewards: weekly winners are rewarded with the ability to put extra challenges to the whole group.
+* Challenge of the week: this challenge would be weekly and will become available to all users
 
-3. Challenge of the week: this challenge would be weekly and will become available to all users
-
-4. Web sockets: this way we can create a real time database and users can send messages to each other.
+* Web sockets: this way we can create a real time database and users can send messages to each other.
