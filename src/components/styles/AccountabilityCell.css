@@ -36,6 +36,13 @@
   border-radius: 50%;
 }
 
+.accountability-buddy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+}
+
 .cell-button-wrapper {
   display: flex;
   align-items: center;

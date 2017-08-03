@@ -8,12 +8,14 @@ router.post('/login', sessionsController.createSession);
 router.post('/users', usersController.create);
 router.get('/users', usersController.index);
 router.post('/activities', activitiesController.create);
+router.post('/activities/buddy', activitiesController.createBuddy);
 router.post('/activities/date', activitiesController.indexByDate);
 router.post('/activities/week', activitiesController.indexUserWeeklyActivities);
 router.post('/activities/month', activitiesController.indexUserMonthlyActivities);
 router.post('/activities/leaders', activitiesController.indexWeeklyChallenge);
 router.put('/activities/user/status', activitiesController.updateActivityStatus);
 router.put('/activities/user/cancel', activitiesController.updateActivityIsCanceled);
+router.put('/activities/user/buddy', activitiesController.updateActivityBuddy);
 
 module.exports = router;
  

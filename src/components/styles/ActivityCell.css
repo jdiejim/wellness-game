@@ -15,7 +15,13 @@
   width: 80%;
 }
 
+.info-cell {
+  display: flex;
+  align-items: center;
+}
+
 .description {
+  margin-right: 15px;
   font-size: 25px;
   font-weight: lighter;
   transition: all 0.5s;
