@@ -19,6 +19,14 @@ const createBuddy = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 }
 
+const updateBuddyRef = (req, res, next) => {
+  Activity.changeActivityBuddyRef(req.body)
+    .then(data => {
+      res.status(200).json({ id: data[0].id });
+    })
+    .catch(error => res.status(500).json({ error }));
+}
+
 const indexByDate = (req, res, next) => {
   Activity.getUserActivitiesByDate(req.body)
     .then(activities => {
@@ -75,4 +83,4 @@ const updateActivityBuddy = (req, res, next) => {
     .catch(error => res.status(500).json({ error }))
 }
 
-module.exports = { create, indexByDate, indexWeeklyChallenge, indexUserWeeklyActivities, updateActivityStatus, updateActivityIsCanceled, indexUserMonthlyActivities, updateActivityBuddy, createBuddy }
+module.exports = { create, indexByDate, indexWeeklyChallenge, indexUserWeeklyActivities, updateActivityStatus, updateActivityIsCanceled, indexUserMonthlyActivities, updateActivityBuddy, createBuddy, updateBuddyRef }

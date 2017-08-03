@@ -311,8 +311,10 @@ export const updateBuddy = (body, weekBody, addBody) => {
       headers: { 'Content-Type': 'application/json' }
     })
     .then(res => {
+      const id = body.id;
+
       dispatch(updateBuddyFail(false));
-      dispatch(createActivityBuddy(addBody, weekBody))
+      dispatch(createActivityBuddy(addBody, weekBody, id))
       // dispatch(fetchWeeklyActivities(weekBody))
       return res.json();
     })
@@ -322,7 +324,7 @@ export const updateBuddy = (body, weekBody, addBody) => {
   }
 }
 
-export const createActivityBuddy = (body, weekBody) => {
+export const createActivityBuddy = (body, weekBody, id) => {
   return dispatch => {
     fetch('api/v1/activities/buddy', {
       method: 'POST',
@@ -332,8 +334,27 @@ export const createActivityBuddy = (body, weekBody) => {
     .then(res => {
       return res.json();
     })
-    .then(res => {
+    .then(({ activity })=> {
+      const buddy_ref = activity[0].id;
+      
+      dispatch(updateBuddyRef({ id, buddy_ref }, weekBody))
+    })
+  }
+}
+
+export const updateBuddyRef = (body, weekBody) => {
+  return dispatch => {
+    fetch('api/v1/activities/user/buddy/ref', {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
       dispatch(fetchWeeklyActivities(weekBody));
     })
+    .catch(err => {
+      console.log(err);
+    });
   }
 }

@@ -15,7 +15,7 @@ const createActivity = (activities) => {
 }
 
 const createActivityBuddy = (activity) => {
-  return db('activities').insert(activity, ['user_id', 'description', 'type', 'points', 'status', 'date']);
+  return db('activities').insert(activity, ['id']);
 }
 
 const getWeeklyLeaders = ({ date }) => {
@@ -40,7 +40,7 @@ const getWeeklyActivities = ({ date, user_id }) => {
   return db('activities').whereBetween('date', [start, end])
                          .andWhere({ user_id })
                          .orderBy('id', 'asc')
-                         .select('user_id', 'activities.id', 'description', 'type', 'status', 'is_canceled', 'date', 'buddy_id', 'buddy_avatar', 'buddy_initials');
+                         .select('user_id', 'activities.id', 'description', 'type', 'status', 'is_canceled', 'date', 'buddy_id', 'buddy_avatar', 'buddy_initials', 'buddy_ref');
 }
 
 const getMonthlyActivities = ({ date, user_id }) => {
@@ -77,4 +77,9 @@ const changeActivityBuddy = ({ id, buddy_id, buddy_avatar, buddy_initials }) => 
                          .update({ buddy_id, buddy_avatar, buddy_initials }, ['*'])
 }
 
-module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyActivities, changeActivityStatus, changeCancelActivity, getMonthlyActivities, changeActivityBuddy, createActivityBuddy };
+const changeActivityBuddyRef = ({ id, buddy_ref }) => {
+  return db('activities').where({ id })
+                         .update({ buddy_ref }, ['*'])
+}
+
+module.exports = { createActivity, getUserActivitiesByDate, getWeeklyLeaders, getWeeklyActivities, changeActivityStatus, changeCancelActivity, getMonthlyActivities, changeActivityBuddy, createActivityBuddy, changeActivityBuddyRef };

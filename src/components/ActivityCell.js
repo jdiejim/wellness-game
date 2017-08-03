@@ -15,17 +15,24 @@ class ActivityCell extends Component {
   }
 
   handleComplete() {
-    const { updateStatus, activity: { id, user_id, date, status, is_canceled } } = this.props;
+    const { updateStatus, activity: { id, user_id, date, status, is_canceled, buddy_ref } } = this.props;
 
     if (!is_canceled) {
       updateStatus({ id, status: !status }, { user_id, date });
+      if (buddy_ref) {
+        updateStatus({ id: buddy_ref, status: !status }, { user_id, date });
+      }
     }
   }
 
   handleCancel() {
-    const { updateCancel, activity: { id, user_id, date, is_canceled } } = this.props;
+    const { updateCancel, activity: { id, user_id, date, is_canceled, buddy_ref } } = this.props;
 
     updateCancel({ id, is_canceled: !is_canceled }, { user_id, date });
+
+    if (buddy_ref) {
+      updateCancel({ id: buddy_ref, is_canceled: !is_canceled }, { user_id, date });
+    }
   }
 
   render() {

@@ -16,6 +16,7 @@ router.post('/activities/leaders', activitiesController.indexWeeklyChallenge);
 router.put('/activities/user/status', activitiesController.updateActivityStatus);
 router.put('/activities/user/cancel', activitiesController.updateActivityIsCanceled);
 router.put('/activities/user/buddy', activitiesController.updateActivityBuddy);
+router.put('/activities/user/buddy/ref', activitiesController.updateBuddyRef);
 
 module.exports = router;
  
