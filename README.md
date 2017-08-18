@@ -1,5 +1,8 @@
 # Wellness Game
 
+## Lunch Application
+https://wellness-game.herokuapp.com/about
+
 This Web app lets users track their wellness activities each week.
 
 ## Features
